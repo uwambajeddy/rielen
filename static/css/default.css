@@ -1,0 +1,246 @@
+@font-face {
+    font-family: "MontserratBold";
+    src: url("../fonts/montserrat/Montserrat-Bold.ttf");
+}
+@font-face {
+    font-family: "MontserratMedium";
+    src: url("../fonts/montserrat/Montserrat-Medium.ttf");
+}
+@font-face {
+    font-family: "MontserratRegular";
+    src: url("../fonts/montserrat/Montserrat-Regular.ttf");
+}
+
+
+
+
+:root {
+    --black-bg-nav: #151617;
+    --black-body-bg-color: #232323;
+    --blue-color: #2E5090;
+    --white-color: #FFFFFF;
+    --green-color: #2AA117;
+    --second-white-color: rgba(255, 255, 255, .76);
+    --white-bg-color: #F1F1F1;
+    
+    --font-family-bold: 'MontserratBold', sans-serif;
+    --font-family-Medium: 'MontserratMedium', sans-serif;
+    --font-family-Regular: 'MontserratRegular', sans-serif;
+}
+
+/* default */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+}
+
+ul{
+    list-style: none;
+}
+
+.dflex{
+    display: flex;
+}
+
+/* ---------------------- */
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--black-body-bg-color);
+}
+
+.leftMenu{
+    font-family: var(--font-family-Medium);
+    width: 20%;
+    padding: 1% 1.5rem;
+    background-color: var(--black-bg-nav);
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.leftMenu a{
+    color: var(--second-white-color);
+}
+.userProfile{
+    text-align: center;
+}
+.userProfile img{
+    border-radius: 5px;
+    object-fit: cover;
+}
+.userName{
+    color: var(--white-color);
+}
+.userName {
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+.userName h5 {
+    margin-top: 5px;
+}
+.LmediumMenu{
+    margin-top: 20px;
+}
+.Llink{
+    margin: 20px 0;
+    align-items: center;
+}
+.Llink:hover, .Llink.active{
+    color: var(--white-color);
+}
+.Llink p{
+    margin-left: 20px;
+    align-items: center;
+}
+.LlinkSpan{
+    color: red;
+}
+.Lbtm{
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 5px;
+    text-align: center;
+    background-color: var(--black-body-bg-color);
+}
+.LbtmLink{
+    text-decoration: underline;
+}
+.rightMenu{
+    width: 80%;
+    padding: 1%;
+    justify-content: space-between;
+}
+.Rcontent {
+    width: 75%;
+    transition: width .5s ease-in-out;
+}
+.Rcontent.RC {
+    width: 93%;
+}
+.Rmenu{
+    width: 24%;
+    background-color: var(--white-bg-color);
+    border-radius: 7px;
+    font-family: var(--font-family-Medium);
+    transition: width .5s ease-in-out;
+}
+.Rmenu.RMF{
+    width: 6%;
+}
+.Rlogo{
+    text-align: center;
+    margin-bottom: 50px;
+    white-space: nowrap;
+}
+.Rmenu.RMF .Rlogo{
+    visibility: hidden;
+}
+.RlHH{
+    padding: 10px 0;
+    white-space: nowrap;
+    font-size: .8rem;
+    letter-spacing: .5px;
+    font-weight: bold;
+}
+.RlHd{
+    display: none;
+}
+.Rmenu.RMF .RlNHD{
+    display: none;
+}
+.Rmenu.RMF .RlHd{
+    display: block;
+}
+.Rmenu a{
+    color: black;
+}
+.RbtnM{
+    cursor: pointer;
+    margin-bottom: 10px;
+    padding: 10px 5%;
+}
+.Ritem{
+    width: 85%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 5px;
+    padding: 3px;
+    text-align: center;
+    transition: background-color .3s ease-in-out;
+}
+.Ritem.active, .Ritem:hover{
+    background-color: var(--black-body-bg-color);
+}
+.Ritem.active a, .Ritem:hover a{
+    color: var(--white-color);
+}
+.Rlink{
+    display: block;
+}
+
+.RCTop{
+    width: 100%;
+    font-family: var(--font-family-bold);
+    color: var(--white-color);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 1rem 5%;
+    background-color: var(--black-bg-nav);
+    border: 1px solid var(--blue-color);
+    border-radius: .3rem;
+}
+.RCTItems{
+    justify-content: space-between;
+}
+.RCTline, .RCTItem .PctPPP{
+    color: var(--blue-color);
+}
+.RCTPP{
+    font-size: .9rem;
+}
+.RCTItem .PctPPP{
+    margin-top: 3px;
+    font-size: .7rem;
+}
+.RCBTM{
+    margin-top: 20px;
+    width: 100%;
+    height: 82.5vh;
+    background-color: var(--white-bg-color);
+    overflow-y: scroll;
+    border-radius: 5px;
+    position: relative;
+    scrollbar-color: var(--blue-color) var(--white-bg-color);
+    scrollbar-width: thin;
+}
+.RCBTM-title{
+    font-family: var(--font-family-bold);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 20px;
+    padding: 15px 3%;
+
+}
+.RCBTM-body{
+    padding: 10px 0;
+    position: absolute;
+    top: 70px;
+    padding: 0 3%;
+    width: 100%;
+}
+.RCBTM::-webkit-scrollbar {
+    width: 7px;
+}
+ 
+.RCBTM::-webkit-scrollbar-thumb {
+  background-color: var(--blue-color);
+}

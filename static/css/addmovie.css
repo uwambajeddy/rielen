@@ -1,0 +1,94 @@
+.RCONT{
+    width: 100%;
+    font-family: var(--font-family-Regular);
+}
+.RCONT-top{
+    padding: 20px 0;
+    text-align: center;
+    background-color: var(--black-body-bg-color);
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: .2rem;
+    margin-bottom: 20px;
+}
+.RCONTOP{
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid gray;
+    padding: 10px 0;
+}
+.RCONBTM{
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+.RCONTBTM-formL{
+    width: 49%;
+}
+.form-control{
+    font-family: var(--font-family-Regular);
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.form-control label{
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.form-control input{
+    padding: 10px;
+    border-radius: .2rem;
+    border: 1px solid gray;
+    outline: none;
+}
+.form-control textarea{
+    height: 120px;
+    outline: none;
+    padding: 10px;
+}
+.form-control input[type='submit']{
+    padding: 10px;
+    border-radius: .2rem;
+    border: 1px solid gray;
+    outline: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--green-color);
+}
+.form-control-ch{
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.chechboxB{
+    width: calc(100% / 4);
+    margin-bottom: 10px;
+}
+.chechboxB input{
+    width: 14px;
+    height: 14px;
+}
+.chechboxB span{
+    font-size: .9rem;
+    font-weight: 900;
+    margin-left: 10px;
+}
+.form-control select{
+    padding: 10px;
+}
+.form-control select option{
+    padding: 10px;
+}
+.RRITE{
+    width: 100% !important;
+    justify-content: space-between;
+}
+.FFL{
+    width: 50%;
+}
+.RRRFO{
+    width: 100% !important;
+}

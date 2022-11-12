@@ -1,0 +1,59 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}Add Otherentvd{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Otherentvd' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>ADD NEW Otherentvd</p>
+        <h6>Fill all inputs to complete this step</h6>
+    </div>
+
+    <div class="RCONT-items">
+        <div class="RCONTOP dflex">
+            <h4>Otherentvd Details</h4>
+            <h4>Otherentvd Media and Type</h4>
+        </div>
+        <form action="{{ url_for('admin.addotherentvd') }}" method="post" class="RCONBTM dflex" enctype="multipart/form-data">
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Title">Title</label>
+                    <input type="text" id="Title" name="Title" placeholder="Title" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="SmallTitle">Small Title</label>
+                    <input type="text" id="SmallTitle" name="SmallTitle" placeholder="Small Title" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Description">Description</label>
+                    <textarea name="Description" id="Description" required></textarea>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Director">Type</label>
+                    <select name="type" id="Director">
+                        <option value="behindscene">Behindscene</option>
+                        <option value="documentary">Documentary</option>
+                    </select>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Time">Video</label>
+                    <input type="text" id="Time" name="video" placeholder="video src" required>
+                </div>
+            </div>
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="CoverImage">Cover Image</label>
+                    <input type="file" id="CoverImage" name="CoverImage">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="Add Otherentvd">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

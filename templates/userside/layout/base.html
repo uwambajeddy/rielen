@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Web icons -->
+    <link rel="icon" type="image/x-icon" href="../../../static/site/images/rielen.png">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../../static/site/css/icons/css/all.css">
+ 
+    <!-- --------- Owl-Carousel ------------------->
+    <link rel="stylesheet" href="../../../static/site/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../../../static/site/css/owl.theme.default.min.css">
+
+    <!-- ------------ BootStrap Library ------------------------- -->
+    <link rel="stylesheet" href="../../../static/site/css/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+
+    <!--  Awesome Icons -->
+    <link rel="stylesheet" href="../../../static/site/icons/pe-icon-7-stroke.css">
+
+    <!-- ------------ AOS Library ------------------------- -->
+    <!-- <link rel="stylesheet" href="../../../static/site/css/aos.css"> -->
+
+    <!-- Swiper Library -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+    <!-- Google fonts link -->
+    <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
+
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="../../../static/site/css/default.css">
+    <link rel="stylesheet" href="../../../static/site/css/style.css">
+    <link rel="stylesheet" href="../../../static/site/css/index.style.css">
+    <link rel="stylesheet" href="../../../static/site/css/search.style.css">
+    {% block link %}{% endblock %}
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+    <!----------------Navigation------------>
+
+    <nav class="second-nav navbar navbar-expand-lg navbar-dark ">
+        <div class="container flex-order-mn">
+
+            <a class=" navbar-brand" href="{{ url_for('userside.home') }}" title="Go to rielen home"><img src="../../../static/site/images/rielen.png" width="45vw" alt="Logo"></a>
+            
+            
+            <div class="nav-items-mn-p">
+                <div class="nav-links-mn-items mobileC">
+                    <div class="collapse-mn" id="navbarSupportedContent">
+                        <ul class="navbar-nav-mn">
+                            <li class="nav-item" data-aos="flip-up"  data-aos-delay="200">
+                                <a class="nav-link active" aria-current="page" href="{{ url_for('userside.home') }}">Home</a>
+                            </li>
+                            <li class="nav-item" data-aos="flip-up"  data-aos-delay="400">
+                                <a class="nav-link" href="{{ url_for('userside.movie') }}">Movies</a>
+                            </li>
+                            <li class="nav-item" data-aos="flip-up"  data-aos-delay="800">
+                                <a class="nav-link" href="{{ url_for('userside.mylist') }}">My List</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-aos="flip-up"  data-aos-delay="1000" id="services" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                More
+                                </a>
+                                <ul class="dropdown-menu text-center" aria-labelledby="services">
+                                    <li><a class="dropdown-item" href="{{ url_for('userside.shortmovie') }}">Short Movies</a> </li>
+                                    <li><a class="dropdown-item" href="{{ url_for('userside.documentary') }}">Documentary</a></li>
+                                    <li><a class="dropdown-item" href="{{ url_for('userside.behindscenes') }}">Behind Scene</a></li>
+                                </ul>
+                            </li>
+                            {% if user != 0 %}
+                                <li class="nav-item" data-aos="flip-up"  data-aos-delay="1000">
+                                    <a class="nav-link" href="{{ url_for('userside.logout', path= request.url) }}"><i class="fas fa-sign-out-alt" style="margin-right: 3px;"></i>Logout</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav-links-mn-other">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="icons-search mx-2">
+                            <form action="{{ url_for('userside.search') }}" method="get">
+                                <input type="text" name="query" placeholder="search here">
+                                <button type="submit"><i class="fas fa-search text-light"></i></button>
+                            </form>
+                        </div>
+                        <div class="icons-notification mx-2">
+                            <i class="fas fa-bell text-light"></i>
+                         </div>
+                         <div class="icons-user mx-2">
+                            {% if user == 0 %}
+                             <div class="registration d-flex align-items-center text-white">
+                                 <a onclick="return loginBox();">Login</a> <p class="px-2 m-auto text-dark">|</p> <a onclick="return signupBox();">Sign up</a>
+                            </div>
+                            {% else %}
+                                <div class="userPPO">
+                                    <a href="{{ url_for('userside.userMinfo') }}"><img src="../static/profiles/users/{{ user.profile }}" width="30vw" alt="user image"></a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+    
+                <button class="navbar-toggler" id="tBtnNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+        </div>
+      </nav>
+
+
+      <!-- login signup form -->
+    
+    <div class="create-modal loginBoxx hidden bg-dark text-light">
+        <button class="close-modal">&times;</button>
+        <h4 class=""> <span style="font-size: 30px; color: #2E5090;">|</span> Login</h4>
+        <div class="notInp Nhidden">
+            <p class="notInp_p"></p>
+            <span class="notInpCloseBtn">&times;</span>
+        </div>
+        <form method="post" id ="loginForm">
+            <div class="form-group ">
+              <label for="logname">Username or Email</label>
+              <input type="text" name="logname" class="form-control border border-primary bg-dark text-light" id="logname" aria-describedby="emailHelp" >
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" class="form-control border border-primary bg-dark text-light" id="password">
+            </div>
+            <input type="hidden" name="url" class="form-control border border-primary bg-dark text-light" value="{{ request.url }}">
+            <div class="form-check p-0 py-3">
+                <div class="d-flex justify-content-between">
+                    <label>I don't have an account <a onclick="specialClose();signupBox();" style="color: #0d6efd; cursor: pointer;">Sign up</a></label>
+                    <div class="col text-end">
+                        <a href="{{ url_for('userside.forget') }}">Forget Password</a>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn text-light w-100" style="background:#2E5090;" id="loginformBox">Login</button>
+          </form>
+    </div>
+
+    <div class="create-modal hidden bg-dark text-light" id="signup_modal">
+        <button class="close-modal" id="signupC_modal">&times;</button>
+        <h4 class=""> <span style="font-size: 30px; color: #2E5090;">|</span> Signup</h4>
+        <div class="notInpp Nhidden">
+            <p class="notInpp_p"></p>
+            <span class="notInpCloseBtnp">&times;</span>
+        </div>
+        <form method="post" id ="signupForm">
+            <div class="form-group ">
+              <label for="Firstname">Firstname</label>
+              <input type="text" name="firstname" class="form-control border border-primary bg-dark text-light" id="Firstname">
+            </div>
+            <div class="form-group">
+              <label for="Lastname">Lastname</label>
+              <input type="text" name="lastname" class="form-control border border-primary bg-dark text-light" id="Lastname">
+            </div>
+            <div class="form-group ">
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control border border-primary bg-dark text-light" id="email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" class="form-control border border-primary bg-dark text-light" id="username">
+              </div>
+              <div class="form-group">
+                <label for="gender">gender</label>
+                <input type="radio" name="gender" class="" id="gender" value="male" checked> Male
+                <input type="radio" name="gender" class="" value="female"> Female
+              </div>
+              <div class="form-group">
+                <label for="phonenumber">Phonenumber</label>
+                <input type="text" name="phonenumber" class="form-control border border-primary bg-dark text-light" id="phonenumber">
+              </div>
+              <div class="form-group">
+                <label for="Snpassword">Password</label>
+                <input type="password" name="spassword" class="form-control border border-primary bg-dark text-light" id="Snpassword">
+              </div>
+              <div class="form-group">
+                <label for="cpassword">Confirm password</label>
+                <input type="password" name="cpassword" class="form-control border border-primary bg-dark text-light" id="cpassword">
+              </div>
+              <div class="form-check p-0 py-3">
+                  <label>I have an account <a onclick="specialClose();loginBox();" style="color: #0d6efd; cursor: pointer;">Login</a></label>
+            </div>
+            <button type="submit" class="btn text-light w-100" style="background:#2E5090;" id="signupformBox">Signup</button>
+          </form>
+    </div>
+
+    <div class="create-modal hidden sentAB bg-dark text-light" id="sentAB">
+        <button class="close-modal sentAB" id="close_sentAB">&times;</button>
+        <div class="modal_notH">
+            <img src="../static/site/icons/confirmation.png" alt="" width="70px" style="align-self: center;">
+        </div>
+        <h2 style="text-align: center; font-size: 25px; margin-bottom: 20px;">Confirm Your Email To Get Started</h2>
+        <p class="modal_hE">Thanks for signup!We've just sent email with confirmation link.</p>
+        <p class="modal_hE">Click the link in the email to get your account verified</p>
+        <p class="modal_hE" id="modal_hE_email">(Email: Adulaty@gmail.com)</p>
+        <div class="modal_he_box">
+            <p class="modal_hE">Didn't get the email?</p>
+            <p class="modal_hE"><a href="#" id="confLinkHref">Click here to resend confirmation email</a></p>
+        </div>
+    </div>
+
+    <div class="overlay hidden"></div>
+    <!-- login signup form -->
+       <!--------------Notifications--------------->
+    <div class="notifications-n">
+        <div class="notification-top">
+            <p>Notification</p>
+            <span class="close-notification">
+                <h3><i class="fas fa-times"></i></h3>
+            </span>
+        </div>
+        {% if notification == False %}
+            <div class="notification-login">
+                <p>Login to get a notification</p>
+                <a onclick="loginBox(); closeNotificationFun()">Login</a>
+            </div>
+        {% elif notification |length == 0 %}
+            <div class="notification-login">
+                <p>No notification are Found</p>
+            </div>
+        {% else %}
+            <ul class="notification-items">
+                {% for i in notification %}
+
+                    {% if i['type'] == 'payment' %}
+                        
+                        <li class="notification-item">
+                            <div class="notItem-left">
+                                <div class="notItem-leftTp">
+                                    <p>Payment</p>
+                                    <p>{{ i.date }}</p>
+                                </div>
+                                <div class="notItem-leftBtm">
+                                    <p>You have paid the movie</p>
+                                    <!-- <p>Spider-Man now way home</p> -->
+                                </div>
+                            </div>
+                        </li>
+
+                    {% elif i['type'] == 'mylist' %}
+
+                        {% if i['movieDet'] | length !=0 %}
+                            <li class="notification-item mylist" onclick="customerPlayerTrailer()">
+                                <div class="notItem-right">
+                                    <img src="../static/mvImages/{{ i['movieDet'][0]['coverImage'] }}" width="100px" height="100%" alt="">
+                                </div>
+                                <div class="notItem-left">
+                                    <div class="notItem-leftTp">
+                                        <p>Mylist</p>
+                                        <p>{{ i.date }}</p>
+                                    </div>
+                                    <div class="notItem-leftBtm">
+                                        <p>You have added movie in mylist</p>
+                                        <p>{{ i['movieDet'][0]['movieTitle'] }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endif %}
+
+                    {% endif %}
+
+                {% endfor %}
+
+            </ul>
+        {% endif %}
+    </div>
+    <!--------x------Notifications--------x------->
+
+
+    <!--------------Pop over--------------->
+    
+    <section class="popover-custom">
+        <div class="popover-loading-mv">
+            <div class="popover-loading-text">Loading</div>
+            <img src="../static/site/gif/loading.gif" alt="" width="80px">
+        </div>
+        <div class="popover-container-mv">
+            <div class="popover-video">
+                <video controls loop disablePictureInPicture>
+                    <source src="#">
+                </video>
+            </div>
+            <div class="popover-details-mv">
+                
+                <span class="popover-title">
+                    <h2>Spider-Man: No Way Home (2021)</h2>
+                    <p>2018. PG-13. 2h 14MIN</p>
+                </span>
+                <span class="popover-content">
+                    <h4>noj zdazdzd zdazdzd zadazdzadzad zdzzdzd zddzd  dzdzd zdzd  zdz</h4>
+                </span>
+                <span class="popover-casts">
+                    <span><p>Director:</p> <h6 class="popover_dir">Ryan Coolger</h6> </span>
+                    <span><p>Casts:</p> <h6 class="popover_cast">John Wick, Chadwick Boosman</h6></span> 
+                    <span><p>Writer:</p> <h6 class="popover_writer">Michael B Jordan</h6></span>
+                    <span class="gens" id="gernesBp">
+                        <p>action</p>
+                        <p>adventure</p>
+                        <p>sci-fi</p>
+                    </span>
+                </span>
+                <span class="popover-play">
+                    {% if user == 0 %}
+                        <a style="cursor: pointer;" onclick="return loginBox();" class="button playnow-button" id="customerPWatchN"><i class="fa fa-play"></i> Play Now</a>
+                        <a style="cursor: pointer;" onclick="return loginBox();" class="button watchlater-button" id="customerPwatchlater"><i class="fa fa-plus"></i> Watch Later</a>
+                    {% else %}
+                        <a class="button playnow-button" id="customerPWatchN"><i class="fa fa-play"></i> Play Now</a>
+                        <a class="button watchlater-button" id="customerPwatchlater"><i class="fa fa-plus"></i> Watch Later</a>
+                    {% endif %}
+                </span>
+
+                <span class="popover-dropDet">
+                    <i class="fas fa-chevron-circle-down"></i>
+                    <i class="fas fa-chevron-circle-up"></i>
+                </span>
+                
+            </div>
+        </div>
+        <div class="popover-close"><i class="fas fa-window-close"></i></div>
+        <div class="popover-background"></div>
+    </section>
+
+
+    <!--------x------Pop over--------x------->
+
+
+    <!-- Page loading -->
+    <div class="page_loading">
+        <div class="loadingP loading01">
+            <span>R</span>
+            <span>i</span>
+            <span>e</span>
+            <span>l</span>
+            <span>e</span>
+            <span>n</span>
+          </div>
+    </div>
+    <!-- end -->
+
+    <!--------x------Navigation--------x------->
+
+    <!---------Main Site Section------------>
+    
+
+
+    
+    <!-- New content here -->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- end -->
+
+
+
+    <!--------Site Footer----------->
+    
+    <section class=" movies-footer">
+        <div class="container">
+
+            <div class="row">
+                
+            <div class="col-sm-12 col-md-12 footer-link">
+                <div class="row">
+
+                    <div class="quick-link col-sm-12 col-md-3">
+                        <h3 class="downLinktitle">Quick Link</h3>
+                        <ul class="other-link-ul-ch">
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.home') }}">Home</a></li>
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.movie') }}">Movies</a></li>
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.mylist') }}">My list</a></li>
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.shortmovie') }}">Short Movies</a></li>
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.documentary') }}">Documentary</a></li>
+                            <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.behindscenes') }}">Behind Scene</a></li>
+                        </ul>
+                    </div>
+            <div class="other-link col-sm-12 col-md-3">
+                <h3 class="downLinktitle">Other Link</h3>
+                <ul class="other-link-ul-ch">
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.about') }}">About Us</a></li>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.contact') }}">Contact Us</a></li>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.search') }}">Search</a></li>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a onclick="notificationOpenF();" style="cursor: pointer; color: var(--second-white-color);">Notification</a></li>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.terms') }}">Terms Of Service</a></li>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="{{ url_for('userside.privacy') }}">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="help-link col-sm-12 col-md-3">
+                <h3 class="downLinktitle">Help</h3>
+                <ul>
+                    <li><span style="font-size: 30px; color: #2E5090;">&#x203a;</span> <a href="">I Need Help</a></li>
+                </ul>
+            </div>
+            <div class="move-up col-md-12 col-lg-3">
+                <div class="move-up-click">
+                    <span>&#x203a; </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 socialmedia-links">
+        <div class="social-icons row">
+            <ul class="justify-content-center col-sm-12">
+                <li><a href="#" class="px-2"><i class="fab fa-google-plus-g"></i></a></li>
+                <li><a href="#" class="px-2"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="https://www.youtube.com/channel/UCf1Tu5c-uzNaRH3G9V_cFhQ" class="px-2"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="https://www.instagram.com/rielen___/" class="px-2"><i class="fab fa-instagram"></i></a></li>
+                
+            </ul>
+            <p class="col-sm-12"><i class="fa fa-map-marker-alt"></i> Rwanda, Kigali</p>
+        </div>
+        <div class="copy-right text-sm-center text-md-start text-lg-start">
+            <p>All rights reserved &copy Rielen 2021</p>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!----x----Site Footer-----x------>
+    
+
+    <!---x------Main Site Section-----x------->
+    
+    <!-- Jquery Library file -->
+    <script src="../../../static/site/js/Jquery3.4.1.min.js"></script>
+    
+    <!-- --------- Owl-Carousel js ------------------->
+    <script src="../../../static/site/js/owl.carousel.min.js"></script>
+
+    <!-- ------------ AOS js Library  ------------------------- -->
+    <!-- <script src="../../../static/site/js/aos.js"></script> -->
+
+    <!-- Swiper Library -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- Custom Javascript file -->
+    <script src="../../../static/site/js/slider.js"></script>
+
+    <!-- ------------ BootStrap Library ------------------------- -->
+    <script src="../../../static/site/css/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+
+    <!-- Custom Javascript file -->
+    <script src="../../../static/site/js/main.js"></script>
+
+    <!-- Custom Javascript file -->
+    <script src="../../../static/site/js/req.js"></script>
+
+
+    <!-- Loading -->
+    <script>
+        $(window).on('load', function () {
+            $('.page_loading').hide();
+        }) 
+    </script>
+
+
+</body>
+</html>

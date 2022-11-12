@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('admin.login') }}" method="post" class="loginF">
+            <h5>Login <span style="color: brown; font-size: 13px;">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    - {{ message }}
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </span>
+            </h5>
+            <div class="form-control dflex">
+                <label for="Email">Email</label>
+                <input type="text" id="Email" name="email" placeholder="Email or username">
+            </div>
+            <div class="form-control dflex">
+                <label for="password">password</label>
+                <input type="password" id="password" name="password" placeholder="password">
+            </div>
+            <div class="form-control dflex">
+                <input type="submit" name="login" value="Login">
+            </div>
+            <a href="{{ url_for('admin.sendEmailCode') }}">Forget password</a>
+        </form>
+    </div>
+
+    <!-- Custom Javascript file -->
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

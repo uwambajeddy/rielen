@@ -1,0 +1,30 @@
+.blog-content {
+    border: 1px solid var(--blue-color);
+    border-radius: 10px;
+}
+.blog-content h2{
+    font-size: 20px;
+}
+.blog-content {
+    font-size: 12px;
+}
+.quality_itemsUl{
+    text-align: center;
+    margin-bottom: 2px !important;
+}
+.quality_itemsUl li{
+    margin-bottom: 1px;
+    font-size: 14px;
+}
+.q_row_cont{
+    height: auto!important;
+}
+.q_row_cont .row{
+    padding-bottom: 5px;
+}
+.q_row_cont .row p{
+    margin: 0 !important;
+}
+.q_row_cont_one{
+    padding: 5px !important;
+}

@@ -1,0 +1,58 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/payment.css') }}">{% endblock %}
+{% block title %}Payment{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Payment' %}
+
+
+{% block content %}
+<div class="genre-Btm">
+    <table>
+        <thead>
+            <tr>
+                <th>N</th>
+                <th>UserName</th>
+                <th>MovieTitle</th>
+                <th>videoType</th>
+                <th>price</th>
+                <th>date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Mugisha abdoullatif</td>
+                <td>Lorem ipsum dolor sit, amet consectetur adipisicing .</td>
+                <td>480p</td>
+                <td>5000 RWF</td>
+                <td>2020/04/02</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Mugisha abdoullatif</td>
+                <td>Lorem ipsum dolor sit, amet consectetur adipisicing.</td>
+                <td>480p</td>
+                <td>5000 RWF</td>
+                <td>2020/04/02</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Mugisha abdoullatif</td>
+                <td>Lorem ipsum dolor sit, amet consectetur adipisicing.</td>
+                <td>480p</td>
+                <td>5000 RWF</td>
+                <td>2020/04/02</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Mugisha abdoullatif</td>
+                <td>Lorem ipsum dolor sit, amet consectetur adipisicing.</td>
+                <td>480p</td>
+                <td>5000 RWF</td>
+                <td>2020/04/02</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

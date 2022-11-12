@@ -1,0 +1,58 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}Add movie{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Otherentvd' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>ADD NEW Otherentvd</p>
+        <h6>Fill all inputs to complete this step</h6>
+    </div>
+
+    <div class="RCONT-items">
+        <div class="RCONTOP dflex">
+            <h4>Otherentvd Details</h4>
+            <h4>Otherentvd Media and type</h4>
+        </div>
+        <form action="{{ url_for('admin.editotherentvd') }}" method="post" class="RCONBTM dflex" enctype="multipart/form-data">
+            {% for m in mov %}
+            <div class="RCONTBTM-formL">
+                <input type="hidden" name="id" placeholder="Title" value="{{ id }}" required>
+                <div class="form-control dflex">
+                    <label for="Title">Title</label>
+                    <input type="text" id="Title" name="Title" placeholder="Title" value="{{m.1}}" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="SmallTitle">Small Title</label>
+                    <input type="text" id="SmallTitle" name="SmallTitle" placeholder="Small Title" value="{{ m.2 }}" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Description">Description</label>
+                    <textarea name="Description" id="Description" value="{{ m.3 }}" required>{{ m.3 }}</textarea>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Time">video</label>
+                    <input type="text" id="video" name="video" placeholder="video" value="{{ m.5 }}" required>
+                </div>
+            </div>
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="CoverImage">Cover Image</label>
+                    <input type="file" id="CoverImage" name="CoverImage">
+                </div>
+                <div class="form-control dflex">
+                    <input type="hidden" id="CoverImage" name="HCoverImage" value="{{ m.4 }}">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="Update movie" value="Update Otherentvd">
+                </div>
+            </div>
+            {% endfor %}
+        </form>
+    </div>
+</div>
+{% endblock %}

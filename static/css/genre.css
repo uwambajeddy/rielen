@@ -1,0 +1,61 @@
+.genreC{
+    width: 80%;
+    margin: auto;
+    font-family: var(--font-family-Medium);
+}
+.RBGEN-TP{
+    background-color: var(--black-body-bg-color);
+    width: 100%;
+    padding: 15px 15%;
+    border-radius: .3rem;
+
+}
+.GenreTitle{
+    margin-bottom: 5px;
+    color: var(--white-color);
+    font-size: .8rem;
+}
+.GenreCont{
+    align-items: center;
+}
+.GenInput{
+    width: 70%;
+    padding: 6px 3%;
+    outline: none;  
+    border: 1px solid var(--green-color);
+    border-radius: 5px 0 0 5px;
+    font-family: var(--font-family-Medium);
+}
+.GenSub{
+    width: 30%;
+    background-color: var(--green-color);
+    padding: 6px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid var(--green-color);
+    font-family: var(--font-family-Medium);
+    color: var(--white-color);
+}
+.genre-Btm{
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--black-body-bg-color);
+    border-radius: .3rem;
+    padding: 10px;
+    color: var(--white-color);
+}
+.genre-Btm table{
+    width: 100%;
+    text-align: center;
+}
+.genre-Btm table thead{
+    font-size: .9rem;
+}
+
+.genre-Btm table tbody td{
+    padding: 10px 0;
+    font-size: .8rem;
+}
+.genreAiImg{
+    width: 22px;
+    height: 22px;
+}

@@ -1,0 +1,64 @@
+<nav class="second-nav navbar navbar-expand-lg navbar-dark ">
+    <div class="container flex-order align-items-baseline">
+        <a class=" navbar-brand flex-order-1" href="{{ url_for('userside.home') }}"><img src="../../../static/site/images/rielen.png" width="45vw" alt=""></a>
+            <button class="navbar-toggler flex-order-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        <div class="nav-links row flex-order-3 d-flex">
+            <div class="col-md-6 align-items-center flex-order-4">
+                <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                      <li class="nav-item" data-aos="flip-up"  data-aos-delay="200">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('userside.home') }}">Home</a>
+                      </li>
+                      <li class="nav-item" data-aos="flip-up"  data-aos-delay="400">
+                        <a class="nav-link" href="{{ url_for('userside.movie') }}">Movies</a>
+                      </li>
+                      <li class="nav-item" data-aos="flip-up"  data-aos-delay="800">
+                        <a class="nav-link" href="{{ url_for('userside.mylist') }}">My List</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-aos="flip-up"  data-aos-delay="1000" id="services" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          More
+                        </a>
+                        <ul class="dropdown-menu text-center" aria-labelledby="services">
+                            <li><a class="dropdown-item" href="#">Short Movies</a> </li>
+                            <li><a class="dropdown-item" href="#">Documentary</a></li>
+                            <li><a class="dropdown-item" href="#">Behind Scene</a></li>
+                        </ul>
+                      </li>
+                      {% if user != 0 %}
+                      <li class="nav-item" data-aos="flip-up"  data-aos-delay="800">
+                        <a class="nav-link" href="{{ url_for('userside.logout') }}"><i class="fas fa-sign-out-alt" style="margin-right: 3px;"></i>Logout</a>
+                      </li>
+                      {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 flex-order-5">
+                <div class="d-flex justify-content-end align-items-center">
+                    <div class="icons-search mx-2">
+                        <form action="{{ url_for('userside.search') }}" method="get">
+                            <input type="text" name="query" placeholder="search here">
+                            <button type="submit"><i class="fas fa-search text-light"></i></button>
+                        </form>
+                    </div>
+                    <div class="icons-notification mx-2">
+                        <i class="fas fa-bell text-light"></i>
+                     </div>
+                     <div class="icons-user mx-2">
+                        {% if user == 0 %}
+                         <div class="registration d-flex align-items-center text-white">
+                             <a onclick="return loginBox();">Login</a> <p class="px-2 m-auto text-dark">|</p> <a onclick="return signupBox();">Sign up</a>
+                        </div>
+                        {% else %}
+                            <div class="userPPO">
+                                <a href="{{ url_for('userside.userMinfo') }}"><img src="../static/profiles/users/{{ user.profile }}" width="30vw" alt="user image"></a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </nav>

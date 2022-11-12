@@ -1,0 +1,21 @@
+.genre-Btm{
+    width: 100%;
+    margin-top: 20px;
+    background-color: var(--black-body-bg-color);
+    border-radius: .3rem;
+    padding: 10px;
+    color: var(--white-color);
+    font-family: var(--font-family-Regular);
+}
+.genre-Btm table{
+    width: 100%;
+    text-align: center;
+}
+.genre-Btm table thead{
+    font-size: .9rem;
+}
+
+.genre-Btm table tbody td{
+    padding: 10px 5px;
+    font-size: .8rem;
+}

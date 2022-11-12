@@ -1,0 +1,43 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/contact.css') }}">{% endblock %}
+{% block title %}Contact Us{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Contact Us' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>ALL MESSAGES</p>
+    </div>
+
+    <div class="RCONT-items dflex">
+        {% for view in views %}
+        <div class="RCONT-item">
+            <div class="RCONT-title dflex">
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Full name</p>
+                    <p class="RPD">{{ view.1 }}</p>
+                </div>
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Email</p>
+                    <p class="RPD">{{ view.2 }}</p>
+                </div>
+                <a href="{{ url_for('admin.contactus', id = view.0 ) }}">
+                    <img src="../static/icons/icons8-delete-64 (1).png" alt="" loading="lazy">
+                </a>
+            </div>
+            <div class="RCONT-BOX">
+                <p class="RPCO">Phone number</p>
+                <p class="RPD">{{ view.3 }}</p>
+            </div>
+            <div class="RCONT-BOX">
+                <p class="RPCO">Message</p>
+                <p class="RPD">{{ view.4 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

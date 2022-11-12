@@ -1,0 +1,25 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/homeslide.css') }}">{% endblock %}
+{% block title %}Home Slides{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Home Slides' %}
+
+
+{% block content %}
+<div class="RBItems dflex">
+
+    <div class="RBItem" style="background-image: url('{{ url_for('static', filename='/images/721152.jpg') }}');">
+        <div class="RBItemCont dflex">
+            <div class="RBItemH-btn">
+                <a href="#" class="RBItem-link bl">Btn visible</a>
+                <a href="#" class="RBItem-link gr">Disactivate</a>
+            </div>
+            <div class="RBItemH-title">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

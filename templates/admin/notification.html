@@ -1,0 +1,42 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/contact.css') }}">{% endblock %}
+{% block title %}Notification{% endblock %}
+{% set parent = 'Notification' %}
+{% set child = 'Notification' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>Notifications</p>
+    </div>
+
+    <div class="RCONT-items dflex">
+        {% for noti in notis %}
+        <div class="RCONT-item">
+            <div class="RCONT-title dflex">
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Email</p>
+                    <p class="RPD">{{ noti.1 }}</p>
+                </div>
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Notification Type</p>
+                    <p class="RPD">{{ noti.2 }}</p>
+                </div>
+            </div>
+            <div class="RCONT-title dflex">
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Description</p>
+                    <p class="RPD">{{ noti.2}} Successful</p>
+                </div>
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Link</p>
+                    <p class="RPD"><a href="#">click here to see full details</a></p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('admin.sendEmailCode') }}" method="post" class="loginF">
+            <h5>Enter email to receive code</h5>
+            <h6 style="color: brown;">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    {{ message }}
+                    {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </h6>
+            <div class="form-control dflex">
+                <label for="Email">Email</label>
+                <input type="text" id="Email" name="email" placeholder="Email">
+            </div>
+            <div class="form-control dflex">
+                <input type="submit" name="login" value="Send">
+            </div>
+        </form>
+    </div>
+
+    <!-- Custom Javascript file -->
+    <script src="../static/js/main.js"></script>
+</body>
+</html>

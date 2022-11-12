@@ -1,0 +1,114 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block link %}<link rel="stylesheet" href="../../../static/site/css/contact.style.css">{% endblock %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+        
+    <!------------Site Top Cover----------->
+    
+    <section
+    class="bg-image p-5 text-left text-white d-flex align-items-center"
+    style="background-image: linear-gradient(358deg, black, transparent),url('../static/images/2222.jpg'); height:420px; background-repeat: no-repeat;
+    background-position: center center; background-size: cover;">
+
+    <div class="container ">
+    </div>
+  
+  </section>
+
+    <!-----x------Site Top Cover ------x------->
+    
+    <section class="contactus ch">
+
+        <div class="contactus-lf">
+
+            <div class="contactus-title ch">
+                <h2>Contact Us</h2>
+                <p>Please get in touch us</p>
+            </div>
+            <div class="contactus-content ch">
+                <div class="support-form ch">
+                    <form action="{{ url_for('userside.contact') }}" method="post">
+                        {% if user == 0 %}
+                            <div class="perForm-control">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Your name" required>
+                            </div>
+                            <div class="perForm-control">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+                            <div class="perForm-control">
+                                <label for="phonenumber">Phone number</label>
+                                <input type="text" id="phonenumber" name="phonenumber" placeholder="Enter Your phone number" required>
+                            </div>
+                        {% else %}
+
+                            <div class="perForm-control">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Your name" value="{{ user.firstName }} {{ user.lastName }}" required>
+                            </div>
+                            <div class="perForm-control">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter your email" value="{{ user.email }}" required>
+                            </div>
+                            <div class="perForm-control">
+                                <label for="phonenumber">Phone number</label>
+                                <input type="text" id="phonenumber" name="phonenumber" placeholder="Enter Your phone number" value="{{ user.PhoneNumber }}" required>
+                            </div>
+
+                        {% endif %}
+
+                        <div class="perForm-control">
+                            <label for="message">Message</label>
+                            <textarea name="message" placeholder="Message" id="message" required></textarea>
+                        </div>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="support-email ch">
+
+            <div class="social-mail ch">
+                <h2>More Information</h2>
+                <ul>
+                    <li class="s-item-ch"><i class="fas fa-map-marker-alt"></i>  Kigali, Gikondo</li>
+                    <li class="s-item-ch"><i class="fas fa-envelope"></i>  support@gmail.com</li>
+                    <li class="s-item-ch"><img src="../../../static/site/icons/icons8-phone-24.png">  07888070600</li>
+                    
+                </ul>
+
+            </div>
+            <!-- <div class="social-icons ch">
+                <h2>Social media links</h2>
+                <ul>
+                    <li class="s-social-icons-ch">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li class="s-social-icons-ch">
+                        <a href="#"><i class="fab fa-twitter-square"></i></a>
+                    </li>
+                    <li class="s-social-icons-ch">
+                        <a href="#"><i class="fab fa-youtube-square"></i></a>
+                    </li>
+                    <li class="s-social-icons-ch">
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    </li>
+                    
+                </ul>
+            </div> -->
+            
+        </div>
+
+    </section>
+
+
+
+    
+    <!----x----Site Content-----x------>
+    
+{% endblock %}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Custom Style   -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/default.css') }}">
+    {% block link %}{% endblock %}
+
+    <title>Dashboard - {% block title %}{% endblock %}</title>
+
+</head>
+<body>
+<!-- ---------------- Start Container ---------------- -->
+<div class="container dflex">
+
+    <!-- ---------------- start left menu ---------------- -->
+    <div class="leftMenu dflex">
+        
+        <div class="LtopMenu">
+            <a href="{{ url_for('admin.user') }}" class="userProfile">
+                <img src="../static/profiles/admin/{{ user[7] }}" alt="" width="100%" height="200px" loading="lazy">
+                <div class="userName">
+                    <h3>{{ user[1] }}</h3>
+                    <h5>{{ user[2] }}</h5>
+                </div>
+            </a>
+        </div>
+        <!-- ************************************************************ -->
+        <div class="LmediumMenu">
+            <ul class="Llinks">
+                {% set navigation = [('Dashboard', '', 'dashboard.png'), ('App setting', 'appinfo','settings.png'), ('Notification', 'notification','notification.png')] %}
+                {% for text, href, logo in navigation %}
+
+                    {% if text == parent %}
+
+                    <li class="Litems">
+                        <a href="/admin/{{ href }}" class="Llink active dflex">
+                            <img src="../static/icons/{{ logo }}" alt="" loading="lazy" width="24px" height="24px">
+                            <p>{{ text }}</p>
+                        </a>
+                    </li>
+
+                    {% else %}
+
+                    <li class="Litems">
+                        <a href="/admin/{{ href }}" class="Llink dflex">
+                            <img src="../static/icons/{{ logo }}" alt="" loading="lazy" width="24px" height="24px">
+                            <p>{{ text }}</p>
+                        </a>
+                    </li>
+
+                    {% endif %}
+
+                {% endfor %}
+                
+                <li class="Litems">
+                    <a href="/admin/logout" class="Llink dflex">
+                        <img src="../static/icons/logout.png" alt="" loading="lazy" width="24px" height="24px">
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- ************************************************************ -->
+        <div class="Lbtm">
+            <a href="/" class="LbtmLink">Visit offical app</a>
+        </div>
+    </div>
+    <!-- ---------------- End ---------------- -->
+
+    <!-- ---------------- Start right menu ---------------- -->
+    <div class="rightMenu dflex">
+
+        <!-- ---------------- Start Rcontent ---------------- -->
+        <div class="Rcontent">
+            
+            <div class="RCTop">
+                <ul class="RCTItems dflex">
+                    <li class="RCTItem">
+                        <p class="RCTPP">Movies</p>
+                        <p class="PctPPP">{{ tpDet[0][0] }}</p>
+                    </li>
+                    <li class="RCTline">|</li>
+                    <li class="RCTItem">
+                        <p class="RCTPP">Gerne</p>
+                        <p class="PctPPP">{{ tpDet[1][0] }}</p>
+                    </li>
+                    <li class="RCTline">|</li>
+                    <li class="RCTItem">
+                        <p class="RCTPP">Active user</p>
+                        <p class="PctPPP">{{ tpDet[2][0] }}</p>
+                    </li>
+                    <li class="RCTline">|</li>
+                    <li class="RCTItem">
+                        <p class="RCTPP">Otherentvd</p>
+                        <p class="PctPPP">{{ tpDet[3][0] }}</p>
+                    </li>
+                    <li class="RCTline">|</li>
+                    <li class="RCTItem">
+                        <p class="RCTPP">Homeslides</p>
+                        <p class="PctPPP">{{ tpDet[4][0] }}</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- ************************************************************ -->
+            <div class="RCBTM">
+                <div class="RCBTM-title">
+                    <h5>Home Slides</h5>
+                </div>
+                <div class="RCBTM-body">
+
+                    <!-- Code here -->
+                    {% block content %}
+                    {% endblock %}
+                    <!-- End -->
+
+                </div>
+            </div>
+
+        </div>
+        <!-- ---------------- End ---------------- -->
+        <!-- ---------------- Start Rmenu ---------------- -->
+        <div class="Rmenu">
+
+            <div class="RbtnM">
+                <img src="../static/icons/icons8-right-30.png" class="RbtnImg" alt="" width="24px" loading="lazy" height="24px">
+            </div>
+            <h2 class="Rlogo">Rielen Dashboard</h2>
+            <ul class="Ritems">
+                {% set DashMenu = [('Home Slides', '/homeslide', 'H'), ('Movie', '/movie','M'), ('Genre', '/genre','G'), ('Payment', '/payment','P'), ('Contact Us', '/contactus','C'), ('Short movie', '/shortmovie','S'), ('Otherentvd', '/otherentvd','O')] %}
+                {% set AppMenu = [('App Info', '/appinfo', 'AP'), ('Add User', '/adduser','A')] %}
+                {% set Not = [('Notification', '/notification', 'N')] %}
+                {% if parent == 'Dashboard' %}
+
+                    {% for text, href, mini in DashMenu %}
+                        {% if text == child %}
+
+                            <li class="Ritem active">
+                                <a href="/admin{{ href }}" class="Rlink">
+                                    <div class="RlHH RlHd">{{ mini }}</div>
+                                    <div class="RlHH RlNHD">{{ text }}</div>
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                        <li class="Ritem">
+                            <a href="/admin{{ href }}" class="Rlink">
+                                <div class="RlHH RlHd">{{ mini }}</div>
+                                <div class="RlHH RlNHD">{{ text }}</div>
+                            </a>
+                        </li>
+
+                        {% endif %}
+                    {% endfor %}
+                {% elif parent == 'Notification' %}
+
+                    {% for text, href, mini in Not %}
+                        {% if text == child %}
+
+                            <li class="Ritem active">
+                                <a href="/admin{{ href }}" class="Rlink">
+                                    <div class="RlHH RlHd">{{ mini }}</div>
+                                    <div class="RlHH RlNHD">{{ text }}</div>
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                        <li class="Ritem">
+                            <a href="/admin{{ href }}" class="Rlink">
+                                <div class="RlHH RlHd">{{ mini }}</div>
+                                <div class="RlHH RlNHD">{{ text }}</div>
+                            </a>
+                        </li>
+
+                        {% endif %}
+                    {% endfor %}
+
+                {% else %}
+
+                    {% for text, href, mini in AppMenu %}
+                        {% if text == child %}
+
+                            <li class="Ritem active">
+                                <a href="/admin{{ href }}" class="Rlink">
+                                    <div class="RlHH RlHd">{{ mini }}</div>
+                                    <div class="RlHH RlNHD">{{ text }}</div>
+                                </a>
+                            </li>
+
+                        {% else %}
+
+                        <li class="Ritem">
+                            <a href="/admin/{{ href }}" class="Rlink">
+                                <div class="RlHH RlHd">{{ mini }}</div>
+                                <div class="RlHH RlNHD">{{ text }}</div>
+                            </a>
+                        </li>
+
+                        {% endif %}
+                    {% endfor %}
+
+                {% endif %}
+            </ul>
+
+        </div>
+        <!-- ---------------- End ---------------- -->
+
+    </div>
+    <!-- ---------------- End ---------------- -->
+
+</div>
+<!-- ---------------- End ---------------- -->
+
+<!-- Custom Javascript file -->
+<script src="../static/js/main.js"></script>
+
+</body>
+</html>

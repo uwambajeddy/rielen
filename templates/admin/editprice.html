@@ -1,0 +1,42 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}Movie Price{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Movie' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>Edit MOVIE PRICE AND VIDEO SRC</p>
+    </div>
+
+    <div class="RCONT-items">
+        <form action="{{ url_for('admin.priceM') }}" method="post" class="RCONBTM dflex">
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Price">Price</label>
+                    <input type="hidden" id="Price" name="id" value="{{ request.args.get('id') }}">
+                    <input type="text" id="Price" name="Price" value="{{ vcat.4 }}" placeholder="Price in RWF">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Discount">Discount</label>
+                    <input type="text" id="Discount" name="Discount" value="{{ vcat.5 }}" placeholder="Discount in RWF">
+                </div>
+                <div class="form-control dflex">
+                    <label for="VideoType">VideoType</label>
+                    <input type="text" id="VideoType" name="VideoType" value="{{ vcat.2 }}" placeholder="Ex: 480p, 720p">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Src">Video Link</label>
+                    <input type="text" id="Src" name="Src" value="{{ vcat.3 }}" placeholder="Ex: https://www.youtube.com/watch?v=Cjgf1G-vOlg">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="update movie cat">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

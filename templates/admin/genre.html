@@ -1,0 +1,49 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/genre.css') }}">{% endblock %}
+{% block title %}Genre{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Genre' %}
+
+
+{% block content %}
+<div class="genreC">
+    <div class="RBGEN-TP">
+        <p class="GenreTitle">Genre</p>
+        <form action="{{ url_for('admin.genre') }}" class="GenreCont dflex" method="post">
+            <input type="text" name="genre" class="GenInput" placeholder="Genre name" required>
+            <input type="submit" value="Add" class="GenSub">
+        </form>
+    </div>
+    <div class="genre-Btm">
+        <table>
+            <thead>
+                <tr>
+                    <th>N</th>
+                    <th>Name</th>
+                    <th>Modify</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for genre in genres %}
+                <tr>
+                    <td>{{ genre[0] }}</td>
+                    <td>{{ genre[1] }}</td>
+                    <td>
+                        <a href="/admin/genre/edit/{{ genre[1] }}">
+                            <img src="../static/icons/icons8-edit-24 (1).png" class="genreAiImg" alt="" loading="lazy">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/admin/genre/delete/{{ genre[0] }}">
+                            <img src="../static/icons/icons8-delete-64 (1).png" class="genreAiImg" alt="" loading="lazy">
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

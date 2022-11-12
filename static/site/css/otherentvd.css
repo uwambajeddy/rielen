@@ -1,0 +1,257 @@
+.otherentvd{
+    width: 100%;
+    padding: 30px 0;
+}
+
+.otherentvd-cont{
+    width: 100%;
+}
+
+.otherTp{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.otherTp-search{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.other-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    border: 1px solid rgba(102, 102, 102, .2);
+}
+
+.other-flex input{
+    width: 20vw;
+    padding: 10px 2%;
+    outline: none;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.other-flex button{
+    color: white;
+    width: 4vw;
+    background-color: rgba(102, 102, 102, .2);
+}
+
+.otherTitleP p{
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.otherTitleP p span{
+    color: var(--blue-color);
+    font-family: var(--font-family-bold);
+}
+
+.otherent-Item{
+    width: 500px;
+    cursor: pointer;
+    background-color: rgba(102, 102, 102, .2);
+    border-radius: 3px;
+    border: 1px solid var(--black-color);
+    margin-bottom: 20px;
+}
+
+.otherent-Item:hover{
+    border: 1px solid rgba(255, 255, 255,.2);
+}
+
+.otherent-Item-cont{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.otherent-Item-img{
+    position: relative;
+    background-color: black;
+}
+
+.otherent-Item-img img{
+    height: 100%;
+    height: 120px;
+}
+
+.otherent-cover-det{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,.7);
+    top: 0;
+    left: 0;
+    color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.otherent-Item:hover .otherent-cover-det{
+    display: flex;
+}
+
+.otherent-Item-det{
+    padding: 5px;
+    position: relative;
+    width: 300px;
+}
+
+.otherent-Item-mvTitle a{
+    font-size: 15px;
+    color: var(--blue-color) !important;
+    font-weight: bold;
+}
+
+.otherent-Item-mvTitle{
+    margin-bottom: 10px;
+}
+
+.otherent-Item-otherTitle p{
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.otherent-Item-date{
+    text-align: end;
+}
+
+.otherent-Item-date p{
+    font-size: 12px;
+}
+
+.otherent-Item-Desc{
+    position: absolute;
+    background-color: var(--black-color);
+    border: 1px solid rgba(255, 255, 255,.2);
+    padding: 5px;
+    border-radius: 3px;
+    z-index: 50;
+    margin-top: 10px;
+    visibility: hidden;
+    transition: visibility .3s ease-in-out;
+    transition-delay: .1s;
+    width: 100%;
+    transform: translateX(-5px);
+}
+
+.otherent-Item:hover .otherent-Item-Desc{
+    visibility: visible;
+}
+
+.otherent-Item-Desc h5{
+    color: white;
+
+}
+
+.otherent-Item-Desc p{
+    color: var(--second-white-color);
+}
+
+.otherent-Item-Desc-icon{
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.otherent-Item-Desc-icon i{
+    color: white;
+}
+
+.otherent-Items{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.backTopPageL{
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.otherentvd-contVd{
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+}
+
+.otherentvd-vdSide{
+    width: 60%;
+}
+
+.otherentvd-vdSide video{
+    width: 100%;
+}
+
+.otherentvd-vdTopC{
+    padding: 5px 2%;
+    width: 40%;
+}
+
+.otherent-Item-otherTitleVd p{
+    font-size: 21px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.lastpOtherentvd{
+    color: var(--second-white-color);
+    letter-spacing: 1px;
+}
+
+
+
+
+@media screen and (max-width: 576px) {
+    .otherentvd{
+        padding: 30px 2%;
+    }
+    .otherent-Item{
+        width: 100%;
+    }
+    
+    .otherent-Item-det{
+        width: 70%;
+    }
+
+    .otherent-Item-img{
+        width: 30%;
+    }
+
+    .otherent-Item-img img{
+        width: 100%;
+    }
+
+    .other-flex input{
+        width: 150px;
+    }
+    
+    .other-flex button{
+        width: 50px;
+    }
+
+}
+@media screen and (max-width: 829px) {
+    .otherentvd-contVd{
+        flex-direction: column;
+    }
+    .otherentvd-vdSide{
+        width: 100%;
+    }
+    
+    .otherentvd-vdTopC{
+        width: 100%;
+    }
+
+}

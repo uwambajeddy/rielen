@@ -1,0 +1,60 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}Add User{% endblock %}
+{% set parent = 'App setting' %}
+{% set child = 'Add User' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>ADD NEW USER</p>
+    </div>
+
+    <div class="RCONT-items">
+        <form action="{{ url_for('admin.adduser') }}" method="post" class="RCONBTM dflex">
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Firstname">Firstname</label>
+                    <input type="text" id="Firstname" name="firstname" placeholder="Firstname">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Lastname">Lastname</label>
+                    <input type="text" id="Lastname" name="lastname" placeholder="Lastname">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Email">Email</label>
+                    <input type="text" id="Email" name="email" placeholder="Email">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Username">Username</label>
+                    <input type="text" id="Username" name="username" placeholder="Username">
+                </div>
+                <div class="form-control dflex">
+                    <label for="PhoneNumber">PhoneNumber</label>
+                    <input type="text" id="PhoneNumber" name="phonenumber" placeholder="PhoneNumber">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Gender">Gender</label>
+                    <select name="gender" id="Gender">
+                        <option value="male">Male</option>
+                        <option value="woman">Woman</option>
+                    </select>
+                </div>
+                <div class="form-control dflex">
+                    <label for="password">password</label>
+                    <input type="password" id="password" name="passw" placeholder="password">
+                </div>
+                <div class="form-control dflex">
+                    <label for="confirmpassword">confirm password</label>
+                    <input type="password" id="confirmpassword" name="cpassw" placeholder="confirm password">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="Add user">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

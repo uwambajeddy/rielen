@@ -1,0 +1,175 @@
+.movieCont{
+    width: 100%;
+    font-family: var(--font-family-Medium);
+}
+.movieTp{
+    width: 100%;
+    background-color: var(--black-body-bg-color);
+    border-radius: .3rem;
+}
+.movieTP-top{
+    position: relative;
+    padding: 9px 0;
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--second-white-color);
+}
+.movieTp-link{
+    position: absolute;
+    left: 5%;
+    color: white;
+    font-family: var(--font-family-Medium);
+    font-size: .8rem;
+    padding: 6px 10px;
+    border-radius: .3rem;
+    border: 1px solid var(--blue-color);
+}
+.movieTp-form{
+    position: absolute;
+    right: 5%;
+    width: 40%;
+}
+.seachMovie{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 7px;
+    background-color: transparent;
+    border: 1px solid white;
+    outline: none;
+    border-radius: .3rem;
+    font-family: var(--font-family-Medium);
+    color: white;
+}
+.movieTp-form button{
+    position: absolute;
+    right: 2%;
+    background: none;
+    border: none;
+    padding: 4px 0;
+    cursor: pointer;
+}
+.movieTp-bmt{
+    padding: 1% 5%;
+}
+.mvForm{
+    align-items: center;
+    justify-content: space-between;
+}
+.form-control{
+    color: white;
+    font-family: var(--font-family-Regular);
+    font-size: .9rem;
+}
+.form-control option{
+    padding: 40px 0;
+}
+.inputSendMV{
+    color: white;
+    background-color: var(--green-color);
+    padding: 4px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.movieBtm{
+    margin-top: 40px;
+}
+.movieItem{
+    width:95%;
+    float: right;
+    margin-bottom: 20px;
+    position: relative;
+    background-color: var(--black-body-bg-color);
+    border-radius: 0 .2rem .2rem;
+    font-family: var(--font-family-Regular);
+
+}
+.movieITCount{
+    position: absolute;
+    top: 0;
+    padding: 5px 0;
+    text-align: center;
+    width: 5%;
+    left: -5%;
+    background-color: var(--black-body-bg-color);
+    color: var(--white-color);
+    border-radius: .2rem 0 0 .2rem;
+}
+.movieITimage{
+    width: 30%;
+    background-position: center;
+    background-size: cover;
+    border-bottom-left-radius: .2rem;
+}
+.mvOtherS{
+    width: 70%;
+    padding: 25px 15px;
+    padding-bottom: 7px;
+    font-family: var(--font-family-Regular);
+    color: white;
+}
+.mvtitle{
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-family: var(--font-family-Regular);
+}
+.mvt-title{
+    font-size: 1.2rem;
+}
+.mvt-icons{
+    justify-content: space-between;
+    align-items: center;
+}
+.mvt-icon{
+    width: 22px;
+    height: 22px;
+    margin: 0 5px;
+}
+.mvt-desc{
+    font-size: .8rem;
+    color: var(--second-white-color);
+}
+.mvt-btm{
+    margin-top: 10px;
+    padding: 8px;
+    border-radius: .2rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--white-bg-color);
+    color: var(--black-body-bg-color);
+}
+.mvtB-item p{
+    margin-right: 8px;
+}
+.mvtB-item{
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8rem;
+}
+.mvtB-item a{
+    color: var(--blue-color);
+}
+.pagination{
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-body-bg-color);
+    border-radius: .2rem;
+    padding: 7px;
+    margin-bottom: 10px;
+}
+.pagination li{
+    margin: 0 5px;
+}
+.pagination a{
+    font-family: var(--font-family-Regular);
+    color: white;
+    font-size: .8rem;
+}

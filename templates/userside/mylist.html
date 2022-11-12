@@ -1,0 +1,108 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}MyList{% endblock %}
+
+{% block content %}
+
+    <!------------Site Top Cover----------->
+    
+    <section
+    class="bg-image p-5 text-left text-white d-flex align-items-center"
+    style="background-image: linear-gradient(358deg, black, transparent),url('../static/images/2222.jpg'); height:420px; background-repeat: no-repeat;
+    background-position: center center; background-size: cover;">
+
+    <div class="container ">
+        <h1 class="tpTxtOnImg">MyList</h1>
+        {% if user ==0 %}
+        <h3>Login to see your movies in mylist ( <a onclick="return loginBox();" style="font-size: 17px;color: #426797 !important;cursor: pointer;">Login Here</a> )</h3>
+        {% endif %}
+    </div>
+  
+  </section>
+
+    <!-----x------Site Top Cover ------x------->
+    
+    <!--------Site Content----------->
+    
+    
+    {% if user !=0 %}
+        {% if mylistItems == False %}
+        <section class="movies ">
+            <!-- --------------loop start-------- -->
+            <div class="movie-cats py-5">
+                <div class="container">
+                    <div class="category-title text-white">
+                        <h1>Nothing in the Mylist</h1>
+                        <a href="{{ url_for('userside.home') }}">Add your favorite movie</a>
+                    </div>
+                </div>
+            </div>
+        
+                <!-- --------------loop end-------- -->
+        </section>
+
+        {% else %}
+            
+            <section class="movies-menu">
+
+                <div class="container">
+                    
+                    <div class="menu-movies">
+        
+                        <div class="movies-category">
+                            <div class="category-title text-light">
+                                <h2><span style=" color: #2E5090;">|</span>Mylist</h2>
+                            </div>
+
+                            {% if user == 0 %}
+                                {% set userIn = False %}
+                            {% else %}
+                                {% set userIn = True %}
+                            {% endif %}
+        
+                            <ul class="category-slides movies_display_list">
+        
+                                {% for b in mylistItems %}
+    
+                                    <li class="blog-content-mv swiper-slide" id="{{b.movieId}}">
+                                        <img class="popover-image-mv"  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" src="../static/mvImages/{{ b['coverImage'] }}" alt="{{ b['movieTitle'] }}" loading="lazy">
+                                        <div class="autoPlay-trailerMv">
+                                            <video onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" muted loop disablePictureInPicture preload="none" poster="../static/mvImages/{{ b['otherImage'] }}">
+                                                <source src="{{ b.trailer }}">
+                                            </video>
+                                            <div class="image-hover-mv listsMv">
+                                                <p  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')">{{ b['movieTitle'] }}</p>
+                                                <div class="hover-buttons-mv">
+                                                    {% if user == 0 %}
+                                                        <a onclick="return loginBox();" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                                    {% else %}
+                                                        <a href="{{ url_for('userside.watch', id= b.movieId) }}" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                                    {% endif %}
+                    
+                                                    {% if user == 0 %}
+                                                        <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                                                    {% else %}
+                                                        <a onclick="return removeMylist(this, '{{ b.mylistid }}');" class="button watchlater-button del" style="cursor: pointer;"><i class="fas fa-minus"></i> Watch later</a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+    
+                                {% endfor %}
+
+                            </ul>
+                                    
+                        </div>
+                            
+                    </div>
+                        
+                </div>
+        
+            </section>
+
+        {% endif %}
+    {% endif %}
+    
+    <!----x----Site Content-----x------>
+{% endblock %}

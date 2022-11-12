@@ -1,0 +1,83 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}{{ user[1] }} {{ user[2] }}{% endblock %}
+{% set parent = 'App setting' %}
+{% set child = 'App Info' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>{{ user[1] }} {{ user[2] }}</p>
+        <h6>{{ user[3] }}</h6>
+    </div>
+
+    <div class="RCONT-items RRITE dflex">
+        <form action="{{ url_for('admin.user') }}" method="post" class="RCONBTM FFL" enctype="multipart/form-data">
+            <div class="RCONTBTM-formL RRRFO">
+                <h6 style="color: brown;">
+                    {% with userinfo = get_flashed_messages(category_filter=["userinfo"]) %}
+                    {% if userinfo %}
+                        {% for message in userinfo %}
+                        {{ message }}
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </h6>
+                <div class="form-control dflex">
+                    <label for="Firstname">Firstname</label>
+                    <input type="text" id="Firstname" name="firstname" placeholder="Firstname" value="{{ user[1] }}">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Lastname">Lastname</label>
+                    <input type="text" id="Lastname" name="lastname" placeholder="Lastname" value="{{ user[2] }}">
+                </div>
+                <div class="form-control dflex">
+                    <label for="PhoneNumber">PhoneNumber</label>
+                    <input type="text" id="PhoneNumber" name="phoneNumber" placeholder="PhoneNumber" value="{{ user[5] }}">
+                </div>
+                <div class="form-control dflex">
+                    <label for="ProfileImage">ProfileImage</label>
+                    <input type="file" id="ProfileImage" name="profileImage">
+                </div>
+                <div class="form-control dflex">
+                    <label for="confirmpassword">confirm with password</label>
+                    <input type="password" id="confirmpassword" name="confirmpassword" placeholder="confirm password">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="updateUserInfo" value="Update">
+                </div>
+            </div>
+        </form>
+        <form action="{{ url_for('admin.user') }}" method="post" class="RCONBTM FFL">
+            <div class="RCONTBTM-formL RRRFO">
+                <h6 style="color: brown;">
+                    {% with changePass = get_flashed_messages(category_filter=["changepass"]) %}
+                    {% if changePass %}
+                        {% for message in changePass %}
+                        {{ message }}
+                        {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </h6>
+                <div class="form-control dflex">
+                    <label for="password">Current password</label>
+                    <input type="password" id="password" name="Cupassword" placeholder="Current password">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Npassword">New password</label>
+                    <input type="password" id="Npassword" name="NNpassword" placeholder="New password">
+                </div>
+                <div class="form-control dflex">
+                    <label for="confirmpassword">confirm password</label>
+                    <input type="password" id="confirmpassword" name="CCpassword" placeholder="confirm password">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="Update password">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

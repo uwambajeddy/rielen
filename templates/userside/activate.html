@@ -1,0 +1,36 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}Activate account{% endblock %}
+
+{% block content %}
+
+<!---------Main Site Section------------>
+    
+  
+<div class="container person-b">
+
+  <div class="resend">
+    
+    {% if succ %}
+
+        <p class="modal_hE">Now your account is verified</p>
+        <div class="modal_he_box">
+            <p class="modal_hE">Go To Home Page </p>
+            <p class="modal_hE"><a href="{{ url_for('userside.home') }}" id="confLinkHref">Click here to go</a></p>
+        </div>
+
+    {% else %}
+
+        <p class="modal_hE">{{ mess }}</p>
+        
+    {% endif %}
+  </div>
+
+</div>
+    
+
+
+    
+<!----x----Site Content-----x------>
+
+{% endblock %}

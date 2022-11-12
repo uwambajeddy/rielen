@@ -1,0 +1,19 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/genre.css') }}">{% endblock %}
+{% block title %}Genre{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Genre' %}
+
+
+{% block content %}
+<div class="genreC">
+    <div class="RBGEN-TP">
+        <p class="GenreTitle">Genre</p>
+        <form action="/admin/genre/edit/{{ genrename }}" method="post" class="GenreCont dflex">
+            <input type="text" name="genre" class="GenInput" placeholder="Genre name" value="{{ genrename }}"  required>
+            <input type="submit" value="edit" class="GenSub">
+        </form>
+    </div>
+</div>
+{% endblock %}

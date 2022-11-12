@@ -1,0 +1,136 @@
+.contactus{
+    background: var(--black-color);
+    color: var(--white-color);
+    position: absolute;
+    transform: translateX(-50%);
+    top: 30%;
+    left: 50%;
+    padding: 32px;
+    border-radius: 15px;
+    border: 1px solid var(--blue-color);
+}
+
+.aboutus-title h2{
+    padding: 0px 0 38px;
+}
+
+.contactus-content{
+    display: flex;
+}
+
+.contactus-title{
+    padding: 0 0 25px;
+}
+
+.social-mail a{
+    display: flex;
+}
+
+.support-form form{
+    display: flex;
+    flex-direction: column;
+}
+.support-form form input,textarea{
+    background: none;
+    border: 1px solid var(--white-color);
+    border-radius: 5px;
+    padding: 10px 30px;
+    margin: 5px 0;
+    outline: none;
+    color: var(--white-color);
+}
+
+.support-email{
+    padding: 0 74px 0px 32px;
+}
+
+.social-mail ul li{
+    padding-bottom: 10px;
+}
+
+.support-form form button{
+    background: var(--blue-color);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.support-form{
+    padding: 0 35px 0 0;
+}
+
+
+.support-form p,.social-icons{
+    padding: 0 0 25px;
+}
+
+.contactus p{
+    font-size: 15px;
+}
+
+.contactus img{
+    height: 20px;
+    width: 20px;
+}
+
+
+
+.aboutus{
+    background: var(--black-color);
+    color: var(--white-color);
+    position: absolute;
+    transform: translateX(-50%);
+    top: 58%;
+    left: 50%;
+    padding: 32px;
+    width: 70%;
+    border-radius: 15px;
+    border: 1px solid var(--blue-color);
+}
+
+.contactus.ch + .movies-footer {
+    padding: 520px 1% 0px;
+}
+.aboutus + .movies-footer {
+    padding: 350px 1% 0px;
+}
+
+.aboutus-title h2{
+        padding: 0px 0 38px;
+}
+
+@media (max-width:768px){
+    .support-email{
+        display: none;
+    }
+    .contactus.ch + .movies-footer{
+        padding: 725px 1% 0px;
+    }
+    .aboutus + .movies-footer{
+        padding: 400px 1% 0px;
+    }
+}
+@media (max-width:961px){
+    .aboutus, .contactus.ch{
+        width: 80%;
+    }
+}
+
+@media (max-width:600px){
+    .aboutus{
+        width: 96%;
+        top: 35%;
+    }
+    .contactus.ch{
+        width: 96%;
+        top: 25%;
+    }
+    .aboutus + .movies-footer{
+        padding: 682px 1% 0px;
+    }
+    .contactus.ch + .movies-footer{
+        padding: 830px 1% 0px;
+    }
+}

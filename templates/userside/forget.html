@@ -1,0 +1,60 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}Forget password{% endblock %}
+
+{% block content %}
+
+<!---------Main Site Section------------>
+    
+  
+<div class="container person-b">
+
+    <div class="person-info-b dn">
+
+      <div class="personForm-site forget">
+
+            {% if not succ %}
+            <h1 style="color: white; font-size: 25px; margin-bottom: 20px;">Enter email to reset password</h1>
+            <form action="{{ url_for('userside.forget') }}" method="post" enctype="multipart/form-data" class="personForm-form forget">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="personErrorBx {{ category }}">
+                      <p>{{ message }}</p>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div class="perForm-control">
+                <label for="New-password">Enter your email</label>
+                <input type="email" id="New-password" name="email" placeholder="Enter Your email">
+              </div>
+              <button type="submit">submit</button>
+            </form>
+            {% else %}
+
+            <div class="resend">
+                <p class="modal_hE">We've sent email to reset your account.</p>
+                <p class="modal_hE">Click the link in the email to get your account verified</p>
+                <p class="modal_hE" id="modal_hE_email">(Email: {{ email }})</p>
+                <div class="modal_he_box">
+                    <p class="modal_hE">Didn't get the email?</p>
+                    <p class="modal_hE"><a href="{{ url_for('userside.forget') }}" id="confLinkHref">Click here to resend email </a></p>
+                </div>
+              </div>
+            
+
+            {% endif  %}
+
+
+      </div>
+
+    </div>
+</div>
+    
+
+
+    
+<!----x----Site Content-----x------>
+
+{% endblock %}

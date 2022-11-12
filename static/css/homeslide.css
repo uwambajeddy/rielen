@@ -1,0 +1,45 @@
+.RBItems{
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.RBItem{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 49%;
+    min-width: 300px;
+    margin-bottom: 10px;
+    height: 200px;
+    border-radius: 5px;
+    position: relative;
+}
+.RBItemCont{
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgb(0, 0, 0, .7);
+    color: white;
+    font-family: var(--font-family-Medium);
+    font-size: .8rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    text-align: center;
+}
+.RBItem-link.bl{
+    background-color: var(--blue-color);
+}
+.RBItem-link.gr{
+    background-color: var(--green-color);
+}
+.RBItem-link{
+    color: var(--white-color);
+    font-size: .7rem;
+    padding: .4rem .7rem;
+    border-radius: .2rem;
+}

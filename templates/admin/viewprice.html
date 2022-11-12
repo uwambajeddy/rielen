@@ -1,0 +1,49 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/viewprice.css') }}">{% endblock %}
+{% block title %}View price{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Movie' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>{{ title }}</p>
+        <h6>Price and video src</h6>
+    </div>
+
+    <div class="RCONT-items dflex">
+        {% for vcat in vcats %}
+        <div class="RCONT-item">
+            <div class="RCONT-title dflex">
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Video Type</p>
+                    <p class="RPD">{{ vcat.2 }}</p>
+                </div>
+                <a href="{{ url_for('admin.priceM', id = vcat.0, ed='true') }}">
+                    <img src="../static/icons/icons8-edit-24 (1).png" alt="" loading="lazy">
+                </a>
+            </div>
+            <div class="RCONT-title dflex">
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Money</p>
+                    <p class="RPD">{{ vcat.4 }} RWF</p>
+                </div>
+                <div class="RCONT-BOX">
+                    <p class="RPCO">Discount</p>
+                    <p class="RPD">{{ vcat.5 }} RWF</p>
+                </div>
+                <a href="{{ url_for('admin.priceM', id = vcat.0) }}">
+                    <img src="../static/icons/icons8-delete-64 (1).png" alt="" loading="lazy">
+                </a>
+            </div>
+            <div class="RCONT-BOX">
+                <p class="RPCO">Video Src</p>
+                <p class="RPD">{{ vcat.3 }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

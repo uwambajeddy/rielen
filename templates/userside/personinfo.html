@@ -1,0 +1,199 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}
+{% if user == 0 %}
+  Me
+{% else %}
+  {{ user.username | capitalize }} - profile
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!---------Main Site Section------------>
+    
+  
+<div class="container person-b">
+
+  {% if user == 0 %}
+
+    <div class="me-nl">
+      <p>To see Information in this page you need to login first</p>
+      <a onclick="return loginBox();">Login</a>
+    </div>
+
+  {% else %}
+
+    <div class="person-info-b">
+        
+      <div class="fullPerson-det">
+
+        <div class="fullPerson-top">
+          
+          <img src="../static/profiles/users/{{ user.profile }}" width="170px" height="170px" alt="User profile" loading="lazy">
+  
+          <div class="fullSmall-det">
+            <p>{{ user.username }}</p>
+            <p>{{ user.email }}</p>
+          </div>
+
+          <div class="fullperson-btm">
+            <p><span class="fullperson-span">firstname: </span>{{ user.firstName }}</p>
+            <p><span class="fullperson-span">Lastname: </span>{{ user.lastName }}</p>
+            <p><span class="fullperson-span">PhoneNumber: </span>{{ user.PhoneNumber }}</p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="personForm-site">
+        <div class="personForm-tps">
+          {% if request.args.get('change') %}
+
+            {% if request.args.get('change') == 'password' %}
+            
+              <a href="/me?change=info">Change user Information</a>
+              <a class="activeP" href="/me?change=password">Change user Password</a>
+
+            {% else %}
+
+              <a class="activeP" href="/me?change=info">Change user Information</a>
+              <a href="/me?change=password">Change user Password</a>
+
+            {% endif %}
+
+          {% else %}
+            <a class="activeP" href="/me?change=info">Change user Information</a>
+            <a href="/me?change=password">Change user Password</a>
+          {% endif %}
+        </div>
+
+        {% if request.args.get('change') %}
+
+          {% if request.args.get('change') == 'password' %}
+
+            <form action="{{ url_for('userside.userMinfo') }}" method="post" enctype="multipart/form-data" class="personForm-form">
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="personErrorBx {{ category }}">
+                      <p>{{ message }}</p>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div class="perForm-control">
+                <label for="New-password">New password</label>
+                <input type="password" id="New-password" name="newPassw" placeholder="Enter Your New password">
+              </div>
+              <div class="perForm-control">
+                <label for="Confirm-password">Confirm password</label>
+                <input type="password" id="Confirm-password" name="confirmPassw" placeholder="Enter Your Confirm password">
+              </div>
+              <div class="perForm-control">
+                <label for="Current-password">Current password</label>
+                <input type="password" id="Current-password" name="currentPassw" placeholder="Enter Your Current password">
+              </div>
+              <button type="submit">Save</button>
+            </form>
+
+            {% else %}
+
+            <form action="{{ url_for('userside.userMinfo') }}" method="post" enctype="multipart/form-data" class="personForm-form">
+            
+              {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                  {% for category, message in messages %}
+                    <div class="personErrorBx {{ category }}">
+                      <p>{{ message }}</p>
+                    </div>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              <div class="perForm-control">
+                <label for="Profile">Profile</label>
+                <input type="file" id="Profile" name="profile">
+              </div>
+              <div class="perForm-control">
+                <label for="firstName">Firstname</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter Your firstName" value="{{ user.firstName }}">
+              </div>
+              <input type="hidden" name="prof" value="{{ user.profile }}">
+              <div class="perForm-control">
+                <label for="lastName">Lastname</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter Your lastname" value="{{ user.lastName }}">
+              </div>
+              <div class="perForm-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter Your username" value="{{ user.username }}">
+              </div>
+              <div class="perForm-control">
+                <label for="phonenumber">Phonenumber</label>
+                <input type="text" id="phonenumber" name="PhoneNumber" placeholder="Enter Your phonenumber" value="{{ user.PhoneNumber }}">
+              </div>
+              <div class="perForm-control">
+                <label for="Confirm-password">Confirm password</label>
+                <input type="password" id="Confirm-password" name="password" placeholder="Enter Your Confirm password">
+              </div>
+              <button type="submit">Save</button>
+            </form>
+
+            {% endif %}
+
+          {% else %}
+
+          <form action="{{ url_for('userside.userMinfo') }}" method="post" enctype="multipart/form-data" class="personForm-form">
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                {% for category, message in messages %}
+                  <div class="personErrorBx {{ category }}">
+                    <p>{{ message }}</p>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <div class="perForm-control">
+              <label for="Profile">Profile</label>
+              <input type="file" id="Profile" name="profile">
+            </div>
+            <div class="perForm-control">
+              <label for="firstName">Firstname</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter Your firstName" value="{{ user.firstName }}">
+            </div>
+            <input type="hidden" name="prof" value="{{ user.profile }}">
+            <div class="perForm-control">
+              <label for="lastName">Lastname</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter Your lastname" value="{{ user.lastName }}">
+            </div>
+            <div class="perForm-control">
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" placeholder="Enter Your username" value="{{ user.username }}">
+            </div>
+            <div class="perForm-control">
+              <label for="phonenumber">Phonenumber</label>
+              <input type="text" id="phonenumber" name="PhoneNumber" placeholder="Enter Your phonenumber" value="{{ user.PhoneNumber }}">
+            </div>
+            <div class="perForm-control">
+              <label for="Confirm-password">Confirm password</label>
+              <input type="password" id="Confirm-password" name="password" placeholder="Enter Your Confirm password">
+            </div>
+            <button type="submit">Save</button>
+          </form>
+
+        {% endif %}
+
+
+      </div>
+
+    </div>
+  {% endif %}
+</div>
+    
+
+
+    
+<!----x----Site Content-----x------>
+
+{% endblock %}

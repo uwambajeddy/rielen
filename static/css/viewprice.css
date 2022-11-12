@@ -1,0 +1,46 @@
+.RCONT{
+    width: 100%;
+    font-family: var(--font-family-Regular);
+}
+.RCONT-top{
+    padding: 20px 0;
+    text-align: center;
+    background-color: var(--black-body-bg-color);
+    color: white;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border-radius: .2rem;
+    margin-bottom: 20px;
+}
+.RCONT-items{
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.RCONT-item{
+    width: 49%;
+    min-width: 300px;
+    padding: 10px;
+    background-color: #C4C4C4;
+    border-radius: .2rem;
+    font-family: var(--font-family-Regular);
+    color: var(--black-body-bg-color);
+    margin-bottom: 20px;
+}
+.RCONT-title{
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.RCONT-title img{
+    width: 22px;
+    height: 22px;
+}
+.RPCO{
+    font-weight: bold;
+    font-size: .9rem;
+    margin-bottom: 4px;
+}
+.RPD{
+    font-size: .8rem;
+}

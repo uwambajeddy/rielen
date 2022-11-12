@@ -1,0 +1,44 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}Watch{% endblock %}
+
+{% block content %}
+
+<!---------Main Site Section------------>
+    
+  
+<div class="container notfound-cont">
+
+    {% if user == 0 %}
+
+        <div class="me-nl">
+        <p>To see Information in this page you need to login first</p>
+        <a onclick="return loginBox();">Login</a>
+        </div>
+
+    {% else %}
+    
+        {% if not bad %}
+            <div class="notfound">
+                <h1 class="notfoundTitle">Ready to watch</h1>
+            </div>
+        {% else %}
+
+            <div class="notfound">
+                <h1 class="notfoundTitle">UNKNOWN MOVIE</h1>
+                <h1 class="notfoundSTitle">GOTO MOVIE PAGE TO FIND A MOVIE TO WATCH</h1>
+                <a href="{{ url_for('userside.movie') }}" class="notfoundbtn">Back To Movie</a>
+            </div>
+
+        {% endif %}
+
+    {% endif %}
+
+</div>
+    
+
+
+    
+<!----x----Site Content-----x------>
+
+{% endblock %}

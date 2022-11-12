@@ -1,0 +1,100 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/movie.css')}}">{% endblock %}
+{% block title %}Movie{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Short movie' %}
+
+
+{% block content %}
+<div class="movieCont">
+    <div class="movieTp">
+        <div class="movieTP-top">
+            <a href="{{ url_for('admin.addshortmovie') }}" class="movieTp-link">
+                Add new short movie
+            </a>
+            <form action="{{ url_for('admin.shortmovie') }}" class="movieTp-form" method="post">
+                <input type="text" name="search" placeholder="Search Here" class="seachMovie">
+                <button type="submit"><img src="../static/icons/icons8-search-24 (1).png" alt="" loading="lazy"></button>
+            </form>
+        </div>
+        <div class="movieTp-bmt">
+            <form action="{{ url_for('admin.shortmovie') }}" class="mvForm dflex" method="get">
+                <div class="form-control">
+                    <label for="Items">Items</label>
+                    <select name="items" id="Items">
+                        <option disabled>Select Items number</option>
+                        <option value="5">5</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="Genre">Genre</label>
+                    <select name="genre" id="Genre">
+                        <option disabled>Select Genre number</option>
+                        <option value="0">All</option>
+                        {% for genre in genres %}
+                        <option value="{{ genre.0 }}">{{ genre.1 }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="Date">Date</label>
+                    <select name="sort" id="Date">
+                        <option disabled>Sort</option>
+                        <option value="ASC">ASC</option>
+                        <option value="DESC">DESC</option>
+                    </select>
+                </div>
+                <input type="submit" class="inputSendMV" value="Send">
+            </form>
+        </div>
+    </div>
+    <div class="movieBtm">
+        {% for movie in movies %}
+        <div class="movieItem">
+            <div class="movieITCount">{{ movie.0 }}</div>
+            <div class="movieItemC dflex">
+                <div class="movieITimage" style="background-image: url('../static/smvImages/{{ movie.3 }}');"></div>
+                <div class="mvOtherS">
+                    <div class="mvtitle dflex">
+                        <div class="mvt-title">{{ movie.1 }}</div>
+                        <div class="mvt-icons dflex">
+                            <a href="/admin/editShortmovie?id={{ movie.0 }}" class="mvt-icon">
+                                <img src="../static/icons/icons8-edit-24 (1).png" class="mvt-icon" alt="" loading="lazy">
+                            </a>
+                            <a href="/admin/shortmovieDelete/{{ movie.0 }}" class="mvt-icon">
+                                <img src="../static/icons/icons8-delete-64 (1).png" class="mvt-icon" alt="" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mvt-desc">{{ movie.2 }}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% if not search %}
+    <ul class="pagination dflex">
+        {% if page <= 1 %}
+            <li><a href="#" disabled="disabled">Prev</a></li>
+        {% else %}
+            <li><a href="/admin/shortmovie?items={{ items }}&genre={{ genre }}&sort={{ sort }}&page={{ page-1 }}">Prev</a></li>
+        {% endif %}
+        {% for p in range(pag) %}
+
+            <li><a href="/admin/shortmovie?items={{ items }}&genre={{ genre }}&sort={{ sort }}&page={{ p+1 }}">{{ p+1 }}</a></li>
+
+        {% endfor %}
+        {% if page < pag %}
+            <li><a href="/admin/shortmovie?items={{ items }}&genre={{ genre }}&sort={{ sort }}&page={{ page+1 }}">Next</a></li>
+        {% else %}
+            <li><a href="#" disabled="disabled">Next</a></li>
+        {% endif %}
+
+    </ul>
+    {% endif %}
+</div>
+{% endblock %}

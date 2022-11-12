@@ -1,0 +1,78 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}Add short movie{% endblock %}
+{% set parent = 'Dashboard' %}
+{% set child = 'Movie' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>ADD NEW SHORT MOVIE</p>
+        <h6>Fill all inputs to complete this step</h6>
+    </div>
+
+    <div class="RCONT-items">
+        <div class="RCONTOP dflex">
+            <h4>Short Movie Details</h4>
+            <h4>Short Movie Media and Gerne</h4>
+        </div>
+        <form action="{{ url_for('admin.addshortmovie') }}" method="post" class="RCONBTM dflex" enctype="multipart/form-data">
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Title">Title</label>
+                    <input type="text" id="Title" name="Title" placeholder="Title" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="SmallTitle">Small Title</label>
+                    <input type="text" id="SmallTitle" name="SmallTitle" placeholder="Small Title" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Description">Description</label>
+                    <textarea name="Description" id="Description" required></textarea>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Director">Director</label>
+                    <input type="text" id="Director" name="Director" placeholder="Director" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Cast">Cast</label>
+                    <input type="text" id="Cast" name="Cast" placeholder="Cast" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Written">Written</label>
+                    <input type="text" id="Written" name="Written" placeholder="Written" required>
+                </div>
+                <div class="form-control dflex">
+                    <label for="Time">Video</label>
+                    <input type="text" id="Time" name="video" placeholder="video src" required>
+                </div>
+            </div>
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Genre">Genre</label>
+                    <div class="form-control-ch dflex">
+                        {% for n in genre %}
+                        <div class="chechboxB">
+                            <input type="checkbox" name="Genre" id="Genre" value="{{ n.0 }}"><span>{{ n.1 }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="form-control dflex">
+                    <label for="CoverImage">Cover Image</label>
+                    <input type="file" id="CoverImage" name="CoverImage">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Trailer">Trailer link</label>
+                    <input type="text" id="Trailer" name="Trailer" placeholder="Trailer link" required>
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="Add shortmovie">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'admin/layout/base.html'%}
+
+{% block link %}<link rel="stylesheet" href="{{ url_for('static', filename='/css/addmovie.css') }}">{% endblock %}
+{% block title %}App info{% endblock %}
+{% set parent = 'App setting' %}
+{% set child = 'App Info' %}
+
+
+{% block content %}
+<div class="RCONT">
+    <div class="RCONT-top">
+        <p>Basic information</p>
+    </div>
+
+    <div class="RCONT-items">
+        <form action="{{ url_for('admin.appinfo') }}" method="post" class="RCONBTM dflex">
+            <div class="RCONTBTM-formL">
+                <div class="form-control dflex">
+                    <label for="Location">Location</label>
+                    <input type="text" id="Location" name="Location" value="{{ view.1 }}" placeholder="Ex: kigali">
+                </div>
+                <div class="form-control dflex">
+                    <label for="PhoneNumber">Phone Number</label>
+                    <input type="text" id="PhoneNumber" name="PhoneNumber" value="{{ view.2 }}" placeholder="Ex: 0780000000">
+                </div>
+                <div class="form-control dflex">
+                    <label for="Email">Email</label>
+                    <input type="text" id="Email" name="Email" value="{{ view.3 }}" placeholder="Ex: Name@gmail.com">
+                </div>
+                <div class="form-control dflex">
+                    <input type="submit" name="addmovie" value="Update">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

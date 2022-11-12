@@ -1,0 +1,72 @@
+.slideup{
+    width: 300px;
+    height: 154px;
+    margin: auto;
+    display: block;
+}
+
+.blog-content{
+    width: 300px;
+    height: 154px;
+    overflow:hidden;
+    margin: 10px 0;
+}
+
+p{
+    color: var(--white-color); 
+}
+
+.menu-movies{
+    padding-top: 40px;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .5rem 1rem;
+    color: var(--white-color); 
+    text-decoration: none;
+    background-color: var(--black-color);
+    border: 1px solid var(--blue-color); 
+    text-align: center;
+}
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: var(--blue-color); 
+        border-color: var(--blue-color); 
+}
+
+.person-info form input{
+    color: var(--white-color);
+    background: var(--black-color);
+    border: 1px solid var(--blue-color);
+}
+
+.person-info form button{
+    background: var(--blue-color) !important;
+    color: var(--white-color) !important;
+}
+
+.person-info img{
+    border-radius: 100%;
+    width: 100px;
+    display: block;
+    margin: auto;
+    height: 100px;
+}
+.person-info p{
+    color: var(--blue-color);
+    
+}
+
+.category-slides [data-aos^=fade][data-aos^=fade].aos-animate {
+    width: auto;
+}
+
+@media (min-width: 540px){
+.image-hover {
+    width: 300px;
+}
+}

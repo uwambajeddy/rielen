@@ -1,0 +1,210 @@
+{% extends 'userside/layout/base.html' %}
+
+
+{% block title %}Short Movie{% endblock %}
+
+
+{% block content %}
+        
+    <!------------Site Top Cover----------->
+    
+    <section
+    class="bg-image p-5 text-left text-white d-flex align-items-center"
+    style="background-image: linear-gradient(358deg, black, transparent),url('../static/images/2222.jpg'); height:420px; background-repeat: no-repeat;
+    background-position: center center; background-size: cover;">
+
+    <div class="container ">
+        <h1 class="tpTxtOnImg">Short Movies</h1>
+    </div>
+  
+  </section>
+
+    <!-----x------Site Top Cover ------x------->
+    
+    <!--------Site Content----------->
+    
+        
+    <section class="movies m-mn">
+
+        <div class="movie-menu-mn container">
+            <div class="list-selecter-mv d-flex phoneS text-light justify-content-between">
+
+                <div class="d-flex-tp">
+                    <h2>SHORT MOVIES</h2>
+                    <h2><i class="fas fa-angle-right"></i></h2>
+                    <h2>{{ mov_res['categ']|upper }}</h2>
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="list-category-mv">
+                        <i class="fa fa-list-alt" aria-hidden="true"></i>
+                        <div class="opt-mvn">
+                            <select onchange="changeGenreCS(this)">
+
+                                {% if request.args.get('genre') %}
+    
+                                    <option value="all">By Category</option>
+                                    
+                                    {% if request.args.get('genre') == 'all' %}
+                                        <option value="all" selected>All</option>
+                                    {% else %}
+                                        <option value="all">All</option>
+                                    {% endif %}
+    
+                                    {% for genre in genres %}
+    
+                                        {% if request.args.get('genre') == genre['name'] %}
+                                            <option value="{{ genre['name'] }}" selected>{{ genre['name'] }}</option>
+                                        {% else %}
+                                            <option value="{{ genre['name'] }}">{{ genre['name'] }}</option>
+                                        {% endif %}
+    
+                                    {% endfor %}
+    
+                                {% else %}
+    
+                                    <option value="all" selected>By Category</option>
+    
+                                    <option value="all">All</option>
+                                    {% for genre in genres %}
+                                    <option value="{{ genre['name'] }}">{{ genre['name'] }}</option>
+                                    {% endfor %}
+    
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="list-category-mv">
+                        <i class="fas fa-sort"></i>
+                        <div class="opt-mvn">
+                            <select onchange="changeSortS(this)">
+
+                                {% if request.args.get('sort') %}
+    
+                                    <option value="DESC">SORT</option>
+                                    
+                                    {% if request.args.get('sort') == 'ASC' %}
+                                        <option value="ASC" selected>Ascending</option>
+                                        <option value="DESC">Descending</option>
+                                    {% else %}
+                                        <option value="ASC">Ascending</option>
+                                        <option value="DESC" selected>Descending</option>
+                                    {% endif %}
+    
+                                {% else %}
+    
+                                    <option value="DESC" selected>SORT</option>
+                                    <option value="ASC">Ascending</option>
+                                    <option value="DESC">Descending</option>
+    
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spaceDown"></div>
+
+        {% if mov_res['categ'] != 'all' %}
+
+        <div class="container movies-menu-cont">
+            
+            <div class="menu-movies">
+
+                <div class="movies-category">
+                    <div class="category-title text-light">
+                        <a href="/shortmovie?genre={{ mov_res['categ'] }}" style="color: white;" ><h2><span style=" color: #2E5090;">|</span>{{ mov_res['categ'] }}</h2></a>
+                    </div>
+
+                    <ul class="category-slides movies_display_list">
+
+                        {% if mov_res['data']|length != 0 %}
+
+                            {% for b in mov_res['data'] %}
+
+                                <li class="blog-content-mv swiper-slide" id="{{b.smId}}">
+                                    <img class="popover-image-mv"  onclick="customerPlayerTrailers('{{ b.smId }}')" src="../static/smvImages/{{ b['coverImage'] }}" alt="{{ b['title'] }}" loading="lazy">
+                                    <div class="autoPlay-trailerMv">
+                                        <video  onclick="customerPlayerTrailers('{{ b.smId }}')" muted loop disablePictureInPicture preload="none" poster="../static/smvImages/{{ b['coverImage'] }}">
+                                            <source src="{{ b.trailer }}">
+                                        </video>
+                                        <div class="image-hover-mv listsMv">
+                                            <p  onclick="customerPlayerTrailers('{{ b.smId }}')">{{ b['title'] }}</p>
+                                            <div class="hover-buttons-mv">
+                                                <a  onclick="alert('{{ b.title }}')" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+                            
+                        
+                        {% else %}
+
+                            <p>Not Founded</p>
+
+                        {% endif %}
+                    </ul>
+                            
+                </div>
+                    
+            </div>
+                
+        </div>
+
+        {% else %}
+            
+            {% for i in mov_res['data'] %}
+                {% if i['movies']|length != 0 %}
+            <!-- --------------loop start-------- -->
+
+
+            <div class="movie-cats py-5">
+                <div class="container">
+                    <div class="category-title text-white">
+                        <a href="/shortmovie?genre={{ i['name'] }}" style="color: white;" ><h2><span style=" color: #2E5090;">|</span>{{ i['name'] }}</h2></a>
+                    </div>
+                </div>
+                <div class="container-fluid" id="category-slides">
+    
+                    <ul class="category-slides swiper-wrapper container">
+    
+                        {% for b in i['movies'] %}
+                        <li class="blog-content-mv swiper-slide"  id="{{b.smId}}">
+                            <img class="popover-image-mv" onclick="customerPlayerTrailers('{{ b.smId }}')" src="../static/smvImages/{{ b['coverImage'] }}" alt="{{ b['title'] }}" loading="lazy">
+                            <div class="autoPlay-trailerMv">
+                                <video onclick="customerPlayerTrailers('{{ b.smId }}')" muted loop disablePictureInPicture preload="none" poster="../static/smvImages/{{ b['coverImage'] }}">
+                                    <source src="{{ b.trailer }}">
+                                </video>
+                                <div class="image-hover-mv listsMv">
+                                    <p  onclick="customerPlayerTrailers('{{ b.smId }}')">{{ b['title'] }}</p>
+                                    <div class="hover-buttons-mv">
+                                        <a href="{{ url_for('userside.watchshortmovie', id= b.smId) }}" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+    
+                    </ul>
+    
+                    <button class="slides-btns-move left-btn"><i class="fas fa-angle-left"></i></button>
+                    <button class="slides-btns-move right-btn"><i class="fas fa-angle-right"></i></button>
+                </div>
+            </div>
+
+
+            <!-- --------------loop end-------- -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </section>
+    
+    
+    <!----x----Site Content-----x------>
+
+{% endblock %}

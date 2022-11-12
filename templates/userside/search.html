@@ -1,0 +1,106 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+    
+<!------------Site Top Cover----------->
+    
+    <section
+    class="bg-image p-5 text-left text-white d-flex align-items-center"
+    style="background-image: linear-gradient(358deg, black, transparent),url('../static/images/2222.jpg'); height:420px; background-repeat: no-repeat;
+    background-position: center center; background-size: cover;">
+
+    <div class="container ">
+        <h1 class="tpTxtOnImg">Search</h1>
+    </div>
+  
+  </section>
+
+    <!-----x------Site Top Cover ------x------->
+    
+    <!--------Site Content----------->
+
+    <section class="movies-menu">
+
+        <div class="container movies-menu-cont">
+
+            <div class="menu-settings-mv">
+                <div class="settings-title-mv"><h3>You search for :<span style="font-size: 30px; color: #2E5090;"></span>{% if request.args.get('query')  %} {{ request.args.get('query') }} {% endif %}</h3></div>
+            </div>
+            
+            <div class="menu-movies">
+
+                <div class="movies-category">
+                    <div class="category-title text-light">
+                        <h2><span style=" color: #2E5090;">|</span>Result</h2>
+                    </div>
+                    {% if user == 0 %}
+                        {% set userIn = False %}
+                    {% else %}
+                        {% set userIn = True %}
+                    {% endif %}
+
+                    <ul class="category-slides movies_display_list">
+
+                        {% if search|length != 0 %}
+
+                            {% for b in search %}
+
+                                <li class="blog-content-mv swiper-slide" id="{{b.movieId}}">
+                                    <img class="popover-image-mv"  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" src="../static/mvImages/{{ b['coverImage'] }}" alt="{{ b['movieTitle'] }}" loading="lazy">
+                                    <div class="autoPlay-trailerMv">
+                                        <video  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" muted loop disablePictureInPicture preload="none" poster="../static/mvImages/{{ b['otherImage'] }}">
+                                            <source src="{{ b.trailer }}">
+                                        </video>
+                                        <div class="image-hover-mv listsMv">
+                                            <p  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')">{{ b['movieTitle'] }}</p>
+                                            <div class="hover-buttons-mv">
+                                                {% if user == 0 %}
+                                                    <a onclick="return loginBox();" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                                {% else %}
+                                                    <a href="{{ url_for('userside.watch', id= b.movieId) }}" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                                {% endif %}
+                
+                                                {% if user == 0 %}
+                                                    <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                                                {% else %}
+
+                                                    {% if 'mylist' in b %}
+                                                        
+                                                        {% if b['mylist'] == True %}
+                                                            <a onclick="return mylist(this, '{{ b.movieId }}');" class="button watchlater-button del {{ genclass(b['movieTitle'], b['Description'], b['director'], b['cast'], b['writter']) }}" style="cursor: pointer;"><i class="fas fa-minus"></i> Watch later</a>
+                                                        {% else %}
+                                                            <a onclick="return mylist(this, '{{ b.movieId }}');" class="button watchlater-button {{ genclass(b['movieTitle'], b['Description'], b['director'], b['cast'], b['writter']) }}" style="cursor: pointer;"><i class="fas fa-plus"></i> Watch later</a>
+                                                        {% endif %}
+            
+                                                    {% else %}
+                                                        <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                                                    {% endif %}
+            
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            {% endfor %}
+                            
+                        
+                        {% else %}
+
+                            <p>Not Founded</p>
+
+                        {% endif %}
+                    </ul>
+                            
+                </div>
+                    
+            </div>
+                
+        </div>
+
+    </section>
+    
+    <!----x----Site Content-----x------>
+    {% endblock %}

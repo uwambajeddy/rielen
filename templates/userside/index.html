@@ -1,0 +1,181 @@
+{% extends 'userside/layout/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+        
+<!------------Site Top Cover----------->
+    
+<section class="movies-top" >
+    <div class="owl-carousel carousel_se_02_carousel">
+
+        
+
+         
+            
+        {% for i in hmsl['data'] %}
+            {% if i['type'] == 'image' %}
+
+                <div class="single-movietrend">
+                    <img src="../static/mvImages/{{ i['coverImage'] }}" alt="" loading="lazy">
+                    <div class="container single-details">
+                        <h1 class="hSlidesTxtOnImg">{{ i['movieTitle'] }}</h1>
+                        <p style="font-size: 15px !important;">{{ i['Description'] }}</p>
+                    </div>
+                </div>
+
+            {% else %}
+
+                <div class="single-movietrend">
+                    <div style="width:100%;height:100%;padding:52.81% 0 0 0;position:relative;">
+                        <!-- Vimeo player -->
+                        <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
+                        <iframe src="https://player.vimeo.com/video/670728541?h=af3c8a0155&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;loop=1&amp;autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Ariel Wayz - Chamber (Official Video)"></iframe>
+                    </div>
+                </div>
+
+            {% endif %}
+    
+        {% endfor %}
+        
+
+     </div>
+ </section>
+
+<section class="smv-advert">
+    <div class="smv-advert-box" style="background-image: url('../static/mvImages/{{ tpMv.otherImage }}');">
+    </div>
+    <div class="smv-advert-box">
+        <div class="col-sm 12 col-md-12 popover-details">
+            <span class="popover-title">
+                <h2>{{ tpMv['movieTitle'] }}</h2>
+                <p>{{ tpMv['smallTitle'] }}</p>
+            </span>
+            <span class="popover-content">
+                <h4>{{ tpMv['Description'] }}</h4>
+            </span>
+            <span class="popover-casts">
+                <span><p>Director  </p> <h6>: {{ tpMv['director'] }}</h6> </span>
+                <span><p>Casts  </p> <h6>: {{ tpMv['cast'] }}</h6></span> 
+                <span><p>Writer  </p> <h6>: {{ tpMv['writter'] }}</h6></span>
+                <span class="gens">
+
+                   {% for i in tpMv['genres'] %}
+                       <p style="display: block;"><a href="/movie?genre={{ i }}" style="color: white">{{ i }}</a></p>
+                   {% endfor %}
+                </span>
+            </span>
+            <span class="popover-play">
+                {% if user == 0 %}
+                    <a onclick="return loginBox();" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                {% else %}
+                    <a href="{{ url_for('userside.watch', id= tpMv.movieId) }}" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                {% endif %}
+
+                {% if user == 0 %}
+                   <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                {% else %}
+                    
+                        {% if 'mylist' in tpMv %}
+                                                    
+                            {% if tpMv['mylist'] == True %}
+                                <a onclick="return mylist(this, '{{ tpMv.movieId }}');" class="button watchlater-button del {{ genclass(tpMv['movieTitle'], tpMv['Description'], tpMv['director'], tpMv['cast'], tpMv['writter']) }}" style="cursor: pointer;"><i class="fas fa-minus"></i> Watch later</a>
+                            {% else %}
+                                <a onclick="return mylist(this, '{{ tpMv.movieId }}');" class="button watchlater-button {{ genclass(tpMv['movieTitle'], tpMv['Description'], tpMv['director'], tpMv['cast'], tpMv['writter']) }}" style="cursor: pointer;"><i class="fas fa-plus"></i> Watch later</a>
+                            {% endif %}
+
+                        {% else %}
+                            <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                        {% endif %}
+
+                {% endif %}
+            </span>
+            
+        </div>
+    </div>
+</section>
+
+<!-----x------Site Top Cover ------x------->
+
+<section class="movies ">
+    {% if user == 0 %}
+        {% set userIn = False %}
+    {% else %}
+        {% set userIn = True %}
+    {% endif %}
+    
+    <!-- --------------loop start-------- -->
+
+    {% for i in restGWMv %}
+        {% if i['movies']|length != 0 %}
+        <div class="movie-cats py-5">
+            <div class="container">
+                <div class="category-title text-white">
+                    <a href="/movie?genre={{ i['name'] }}" style="color: white;" ><h2><span style=" color: #2E5090;">|</span>{{ i['name'] }}</h2></a>
+                </div>
+            </div>
+            <div class="container-fluid" id="category-slides">
+
+                <ul class="category-slides swiper-wrapper container">
+
+                    {% for b in i['movies'] %}
+                    <li class="blog-content-mv swiper-slide" id="{{b.movieId}}">
+                        <img class="popover-image-mv"  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" src="../static/mvImages/{{ b['coverImage'] }}" alt="{{ b['movieTitle'] }}" loading="lazy">
+                        <div class="autoPlay-trailerMv">
+                            <video onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')" muted loop disablePictureInPicture preload="none" poster="../static/mvImages/{{ b['otherImage'] }}">
+                                <source src="{{ b.trailer }}">
+                            </video>
+                            <div class="image-hover-mv listsMv">
+                                <p  onclick="customerPlayerTrailer('{{ b.movieId }}', '{{ userIn }}')">{{ b['movieTitle'] }}</p>
+                                <div class="hover-buttons-mv">
+                                    {% if user == 0 %}
+                                        <a onclick="return loginBox();" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                    {% else %}
+                                        <a href="{{ url_for('userside.watch', id= b.movieId) }}" class="button playnow-button"><i class="fa fa-play"></i> Play Now</a>
+                                    {% endif %}
+    
+                                    {% if user == 0 %}
+                                        <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                                    {% else %}
+
+                                        {% if 'mylist' in b %}
+                                            
+                                            {% if b['mylist'] == True %}
+                                                <a onclick="return mylist(this, '{{ b.movieId }}');" class="button watchlater-button del {{ genclass(b['movieTitle'], b['Description'], b['director'], b['cast'], b['writter']) }}" style="cursor: pointer;"><i class="fas fa-minus"></i> Watch later</a>
+                                            {% else %}
+                                                <a onclick="return mylist(this, '{{ b.movieId }}');" class="button watchlater-button {{ genclass(b['movieTitle'], b['Description'], b['director'], b['cast'], b['writter']) }}" style="cursor: pointer;"><i class="fas fa-plus"></i> Watch later</a>
+                                            {% endif %}
+
+                                        {% else %}
+                                            <a onclick="return loginBox();" class="button watchlater-button"><i class="fas fa-plus"></i> Watch later</a>
+                                        {% endif %}
+
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+                <button class="slides-btns-move left-btn"><i class="fas fa-angle-left"></i></button>
+                <button class="slides-btns-move right-btn"><i class="fas fa-angle-right"></i></button>
+            </div>
+        </div>
+        {% endif %}
+    {% endfor %}
+
+        <!-- --------------loop end-------- -->
+</section>
+
+<!--------Site Content----------->
+
+
+
+
+
+
+<!----x----Site Content-----x------>
+
+{% endblock %}

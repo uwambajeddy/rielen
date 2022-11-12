@@ -1,0 +1,39 @@
+{% extends 'userside/layout/base.html' %}
+
+
+{% block title %}Send activation link{% endblock %}
+
+{% block content %}
+
+<!---------Main Site Section------------>
+    
+  
+<div class="container person-b">
+
+  <div class="resend">
+    
+    {% if succ %}
+
+        <p class="modal_hE">We've resend again email with confirmation link.</p>
+        <p class="modal_hE">Click the link in the email to get your account verified</p>
+        <p class="modal_hE" id="modal_hE_email">(Email: {{ data['email'] }})</p>
+        <div class="modal_he_box">
+            <p class="modal_hE">Didn't get the email?</p>
+            <p class="modal_hE"><a href="{{ url_for('userside.sendactivationlink', token=data['userId']) }}" id="confLinkHref">Click here to resend confirmation email</a></p>
+        </div>
+
+    {% else %}
+
+        <p class="modal_hE">{{ mess }}</p>
+        
+    {% endif %}
+  </div>
+
+</div>
+    
+
+
+    
+<!----x----Site Content-----x------>
+
+{% endblock %}

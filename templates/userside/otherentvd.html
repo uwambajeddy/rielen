@@ -1,0 +1,148 @@
+{% extends 'userside/layout/base.html' %}
+{% block link %}
+<link rel="stylesheet" href="../../../static/site/css/otherentvd.css">
+{% endblock %}
+
+{% block title %}Behind scene{% endblock %}
+
+
+{% block content %}
+        
+    <!------------Site Top Cover----------->
+    
+    <section
+    class="bg-image p-5 text-center text-white d-flex align-items-center"
+    style="background-image: linear-gradient(358deg, black, transparent),url('../static/images/2222.jpg'); height:220px; background-repeat: no-repeat;
+    background-position: center center; background-size: cover;">
+
+    <div class="container ">
+        <h1 class="tpTxtOnImg">Behind scenes</h1>
+    </div>
+  
+  </section>
+
+<!-- Otherentvd -->
+
+  <section class="container otherentvd">
+        <div class="otherentvd-cont">
+            <div class="otherTp">
+                <div class="otherTp-search">
+                    <form action="" method="get">
+                        <div class="other-flex">
+                            {% if request.args.get('search') %}
+                            <input type="text" name="search" placeholder="Search here" value="{{ request.args.get('search') }}">
+                            {% else %}
+                            <input type="text" name="search" placeholder="Search here">
+                            {% endif %}
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {% if not request.args.get('id') %}
+            <div class="otherTitleP">
+                <a href="/behindscene"><p><span>|</span> Behind scenes</p></a>
+            </div>
+
+            <div class="otherentvd-content">
+                <div class="otherent-Items">
+                    
+                    <!-- Loop -->
+
+                            {% if res|length == 0 %}
+
+                                <div class="otherent-Item">
+                                    <div class="otherent-Item-cont" style="display: flex;justify-content: center;align-items: center; padding: 30px 2%;">
+                                        <p style="margin: 0!important;">No Result Founded</p>
+                                    </div>
+                                </div>
+
+                            {% else %}
+
+                                {% for b in res %}
+
+                                    <div class="otherent-Item" onclick="behindSceneClick('{{ b.oeVdId }}')">
+                                        <div class="otherent-Item-cont">
+                                            <div class="otherent-Item-img">
+                                                <img src="../static/otherentvd/{{ b.image }}" alt="" width="200px" loading="lazy">
+                                                <div class="otherent-cover-det">Click to watch video</div>
+                                            </div>
+                                            <div class="otherent-Item-det">
+                                                <div class="otherent-Item-mvTitle">
+                                                    <a href="#">#{{ b.smallTitle }}</a>
+                                                </div>
+                                                <div class="otherent-Item-otherTitle">
+                                                    <p>{{ b.title }}</p>
+                                                </div>
+                                                <div class="otherent-Item-date">
+                                                    <p>...</p>
+                                                </div>
+                                                <div class="otherent-Item-Desc">
+                                                    <div class="otherent-Item-Desc-icon">
+                                                        <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                                    </div>
+                                                    <h5>DESCRIPTION</h5>
+                                                    <p>{{ b.description }}</p>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                {% endfor %}
+
+                            {% endif %}
+                    <!-- endLoop -->
+
+                </div>
+            </div>
+            {% endif %}
+        </div>
+  </section>
+
+<!-- End -->
+
+
+<!-- Video play -->
+{% if request.args.get('id') %}
+    {% if sres|length == 0 %}
+    <div class="container otherentvd">  
+        <div class="otherentvd-content">
+            <a href="/documentary" class="backTopPageL" >&larr; Back to Documentary page</a>
+            <div class="otherent-Items">
+                <div class="otherent-Item">
+                    <div class="otherent-Item-cont" style="display: flex;justify-content: center;align-items: center; padding: 30px 2%;">
+                        <p style="margin: 0!important;">We couldn't found anything</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <section class="container otherentvd">
+        <a href="/behindscene" class="backTopPageL" >&larr; Back to Behind scenes page</a>
+        <div class="otherentvd-contVd">
+            <div class="otherentvd-vdSide">
+                <video controls>
+                    <source src="{{ sres.video }}">
+                </video>
+            </div>
+            <div class="otherentvd-vdTopC">
+                <div class="otherent-Item-mvTitle">
+                    <a>#{{ sres.smallTitle }}</a>
+                </div>
+                <div class="otherent-Item-otherTitleVd">
+                    <p>{{ sres.title }}</p>
+                </div>
+
+                <p class="lastpOtherentvd">{{ sres.description }}</p>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+{% endif %}
+<!-- End -->
+
+    <!-----x------Site Top Cover ------x------->
+
+{% endblock %}
