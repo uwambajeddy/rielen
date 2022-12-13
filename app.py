@@ -25,10 +25,10 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(days= 3)
 app.config["JWT_SECRET_KEY"] = 'akeza'
 
 ''' FLASK_MYSQLDB '''
-app.config['MYSQL_HOST'] = 'us-cdbr-east-05.cleardb.net'
-app.config['MYSQL_USER'] = 'bfad6ca972143d'
-app.config['MYSQL_PASSWORD'] = '1dcb7185'
-app.config['MYSQL_DB'] = 'heroku_fbb2b164d4b8192'
+app.config['MYSQL_HOST'] = 'sql9.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql9584391'
+app.config['MYSQL_PASSWORD'] = 'aupKsndbId'
+app.config['MYSQL_DB'] = 'sql9584391'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 ''' FLASK_MAIL '''
